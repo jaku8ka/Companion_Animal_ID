@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">Companion_Animal_ID</string>
+    <string name="app_name">Companion Animal ID</string>
+
+    <!-- Content description -->
+    <string name="cd_pet_image">Pet Image</string>
+    <string name="cd_pet_warning">Pet Warning</string>
+
 </resources>
