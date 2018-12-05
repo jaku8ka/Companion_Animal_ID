@@ -5,4 +5,21 @@
     <string name="cd_pet_image">Pet Image</string>
     <string name="cd_pet_warning">Pet Warning</string>
 
+    <!-- Add pet layout -->
+    <string name="pet_description">Popis zvierata</string>
+    <string name="name_of_owner">Majitel</string>
+
+    <string name="name_of_pet">Meno zvierata</string>
+    <string name="date_of_birth">Datum narodenia</string>
+    <string name="sex">Pohlavie</string>
+    <string name="species">Plemeno</string>
+    <string name="pet_type">Druh zvierata</string>
+    <string name="color_of_pet">Farba zvierata</string>
+    <string name="type_of_fur">Druh srsti</string>
+    <string name="differences">Zvlastne znamenia</string>
+    <string name="date_of_chip">Datum cipovania</string>
+    <string name="chip_number">Cislo cipu</string>
+
+    <string name="btn_pet_add">Pridat</string>
+
 </resources>

@@ -1,5 +1,6 @@
 package org.jaku8ka.companion_animal_id;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -32,16 +33,10 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.ListIte
     }
 
     @Override
-    public void onListItemClick(int clickedItemIndex) {
+    public void onListItemClick(int itemId) {
 
-        if (toast != null) {
-            toast.cancel();
-        }
-
-        String text = myDataset[clickedItemIndex];
-
-        toast = Toast.makeText(this, text, Toast.LENGTH_SHORT);
-        toast.show();
-
+        Intent intent = new Intent(MainActivity.this, AddPetActivity.class);
+        intent.putExtra(AddPetActivity.EXTRA_TASK_ID, itemId);
+        startActivity(intent);
     }
 }
