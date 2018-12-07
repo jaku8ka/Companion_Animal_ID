@@ -12,7 +12,7 @@ import java.util.List;
 @Dao
 public interface TaskDao {
 
-    @Query("SELECT * FROM pet ORDER BY petType, nameOfPet")
+    @Query("SELECT * FROM pet ORDER BY nameOfPet")
     List<TaskEntry> loadAllTasks();
 
     @Insert

@@ -21,5 +21,6 @@
     <string name="chip_number">Cislo cipu</string>
 
     <string name="btn_pet_add">Pridat</string>
+    <string name="btn_pet_upd">Upravit</string>
 
 </resources>

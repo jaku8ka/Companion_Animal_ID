@@ -1,6 +1,7 @@
 package org.jaku8ka.companion_animal_id.database;
 
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
 import java.util.Date;
@@ -12,17 +13,32 @@ public class TaskEntry {
     private int id;
     private String nameOfPet;
     private String petType;
-    private Date dateOfBirth;
-    private char sex;
+    private String dateOfBirth;
+    private String sex;
     private String species;
     private String colorOfPet;
     private String fur;
     private String differences;
-    private Date chipDate;
+    private String chipDate;
     private String chipNumber;
 
-    public TaskEntry(int id, String nameOfPet, String petType, Date dateOfBirth, char sex, String species, String colorOfPet,
-                     String fur, String differences, Date chipDate, String chipNumber) {
+    @Ignore
+    public TaskEntry(String nameOfPet, String petType, String dateOfBirth, String sex, String species, String colorOfPet,
+                     String fur, String differences, String chipDate, String chipNumber) {
+        this.nameOfPet = nameOfPet;
+        this.petType = petType;
+        this.dateOfBirth = dateOfBirth;
+        this.sex = sex;
+        this.species = species;
+        this.colorOfPet = colorOfPet;
+        this.fur = fur;
+        this.differences = differences;
+        this.chipDate = chipDate;
+        this.chipNumber = chipNumber;
+    }
+
+    public TaskEntry(int id, String nameOfPet, String petType, String dateOfBirth, String sex, String species, String colorOfPet,
+                     String fur, String differences, String chipDate, String chipNumber) {
         this.id = id;
         this.nameOfPet = nameOfPet;
         this.petType = petType;
@@ -60,19 +76,19 @@ public class TaskEntry {
         this.petType = petType;
     }
 
-    public Date getDateOfBirth() {
+    public String getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public char getSex() {
+    public String getSex() {
         return sex;
     }
 
-    public void setSex(char sex) {
+    public void setSex(String sex) {
         this.sex = sex;
     }
 
@@ -108,11 +124,11 @@ public class TaskEntry {
         this.differences = differences;
     }
 
-    public Date getChipDate() {
+    public String getChipDate() {
         return chipDate;
     }
 
-    public void setChipDate(Date chipDate) {
+    public void setChipDate(String chipDate) {
         this.chipDate = chipDate;
     }
 

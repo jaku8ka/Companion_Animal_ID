@@ -1,5 +1,6 @@
 package org.jaku8ka.companion_animal_id;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,13 +8,19 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.jaku8ka.companion_animal_id.database.TaskEntry;
+
+import java.util.List;
+
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     final private ListItemClickListener mOnClickListener;
-    private String[] mDataset;
+    private List<TaskEntry> mTaskEntries;
 
-    public MyAdapter(String[] myDataset, ListItemClickListener listener) {
-        mDataset = myDataset;
+    private Context mContext;
+
+    public MyAdapter(Context context, ListItemClickListener listener) {
+        mContext = context;
         mOnClickListener = listener;
     }
 
@@ -27,7 +34,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         private ImageView mIVPet;
         private ImageView mIVWarning;
 
-        private MyViewHolder(View view) {
+        public MyViewHolder(View view) {
             super(view);
 
             mTextView = view.findViewById(R.id.tv_name);
@@ -47,17 +54,29 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public MyAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.rv_item, parent, false);
 
-        MyViewHolder viewHolder = new MyViewHolder(view);
-        return viewHolder;
+        return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        holder.mTextView.setText(mDataset[position]);
+        TaskEntry taskEntry = mTaskEntries.get(position);
+
+        String nameOfPet = taskEntry.getNameOfPet();
+
+        holder.mTextView.setText(nameOfPet);
+    }
+
+    public void setTasks(List<TaskEntry> taskEntries) {
+        mTaskEntries = taskEntries;
+        notifyDataSetChanged();
     }
 
     @Override
-    public int getItemCount() {
-        return mDataset.length;
+    public int getItemCount(){
+        if (mTaskEntries == null) {
+            return 0;
+        }
+        return mTaskEntries.size();
     }
+
 }
