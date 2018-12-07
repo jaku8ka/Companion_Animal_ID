@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import org.jaku8ka.companion_animal_id.database.AppDatabase;
 import org.jaku8ka.companion_animal_id.database.TaskEntry;
@@ -131,19 +132,27 @@ public class AddPetActivity extends AppCompatActivity {
         String dateOfChip = mDateOfChip.getText().toString();
         String chipNumber = mChipNumber.getText().toString();
 
-        final TaskEntry task = new TaskEntry(nameOfPet, typeOfPet, dateOfBirth, sex, species,
-                colorOfPet, typeOfFur, differences, dateOfChip, chipNumber);
-        AppExecutors.getInstance().diskIO().execute(new Runnable() {
-            @Override
-            public void run() {
-                if (mTaskId == DEFAULT_TASK_ID) {
-                    mDb.taskDao().insertTask(task);
-                } else {
-                    task.setId(mTaskId);
-                    mDb.taskDao().updateTask(task);
+        if (nameOfPet.isEmpty()) {
+            Toast toast = Toast.makeText(this, "Zadaj meno zvierata!", Toast.LENGTH_SHORT);
+            toast.show();
+        } else {
+
+            final TaskEntry task = new TaskEntry(nameOfPet, typeOfPet, dateOfBirth, sex, species,
+                    colorOfPet, typeOfFur, differences, dateOfChip, chipNumber);
+            AppExecutors.getInstance().diskIO().execute(new Runnable() {
+                @Override
+                public void run() {
+                    if (mTaskId == DEFAULT_TASK_ID) {
+                        mDb.taskDao().insertTask(task);
+                    } else {
+                        task.setId(mTaskId);
+                        mDb.taskDao().updateTask(task);
+                    }
+                    finish();
                 }
-                finish();
-            }
-        });
+            });
+
+        }
+
     }
 }

@@ -5,4 +5,6 @@
     <dimen name="hv_margin">16dp</dimen>
 
     <dimen name="hvs_padding">8dp</dimen>
+
+    <dimen name="rv_height">32dp</dimen>
 </resources>

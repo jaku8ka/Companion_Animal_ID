@@ -71,6 +71,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         notifyDataSetChanged();
     }
 
+    public List<TaskEntry> getTasks() {
+        return mTaskEntries;
+    }
+
     @Override
     public int getItemCount(){
         if (mTaskEntries == null) {

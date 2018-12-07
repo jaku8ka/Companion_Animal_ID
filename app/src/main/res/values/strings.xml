@@ -23,4 +23,7 @@
     <string name="btn_pet_add">Pridat</string>
     <string name="btn_pet_upd">Upravit</string>
 
+    <string name="dialog_text">Databaza je prazdna, pridajte nove zviera, mazanie sa uskutocnuje potiahnutim dolava alebo doprava.</string>
+    <string name="dialog_title">Upozornenie!!!</string>
+
 </resources>

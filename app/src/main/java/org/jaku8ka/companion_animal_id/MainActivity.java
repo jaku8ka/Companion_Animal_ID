@@ -1,13 +1,15 @@
 package org.jaku8ka.companion_animal_id;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
-import android.widget.Toast;
 
 import org.jaku8ka.companion_animal_id.database.AppDatabase;
 import org.jaku8ka.companion_animal_id.database.TaskEntry;
@@ -40,6 +42,33 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.ListIte
         mAdapter = new MyAdapter(this, this);
         mRecyclerView.setAdapter(mAdapter);
 
+        if(mDb == null) {
+
+            openDialog();
+        }
+
+
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(final RecyclerView.ViewHolder viewHolder, int swipeDir) {
+                AppExecutors.getInstance().diskIO().execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        int position = viewHolder.getAdapterPosition();
+                        List<TaskEntry> tasks = mAdapter.getTasks();
+                        mDb.taskDao().deleteTask(tasks.get(position));
+                        retrievePets();
+                    }
+                });
+            }
+        }).attachToRecyclerView(mRecyclerView);
+
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,6 +78,7 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.ListIte
         });
 
         mDb = AppDatabase.getInstance(getApplicationContext());
+
     }
 
     @Override
@@ -73,11 +103,25 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.ListIte
         });
     }
 
+
+
     @Override
     public void onListItemClick(int itemId) {
 
         Intent intent = new Intent(MainActivity.this, AddPetActivity.class);
         intent.putExtra(AddPetActivity.EXTRA_TASK_ID, itemId);
         startActivity(intent);
+    }
+
+    public void openDialog() {
+        AlertDialog alertDialog = new AlertDialog.Builder(this)
+                .setTitle("Hint")
+                .setMessage("Pridaj nove zviera, swipe to delete")
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                    }
+                })
+                .show();
     }
 }

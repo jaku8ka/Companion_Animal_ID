@@ -20,8 +20,9 @@
         android:id="@+id/tv_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:padding="@dimen/hv_margin"
+        android:padding="@dimen/rv_height"
         tools:text="@string/cd_pet_image"
+        android:textSize="24sp"
         android:layout_weight="10"/>
 
     <ImageView
