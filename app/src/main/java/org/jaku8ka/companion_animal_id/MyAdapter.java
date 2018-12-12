@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -38,6 +39,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         String nameOfPet = taskEntry.getNameOfPet();
 
         holder.mTextView.setText(nameOfPet);
+
     }
 
     @Override
@@ -64,16 +66,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private TextView mTextView;
-        private ImageView mIVPet;
-        private ImageView mIVWarning;
 
         public MyViewHolder(View view) {
             super(view);
 
             mTextView = view.findViewById(R.id.tv_name);
-            mIVPet = view.findViewById(R.id.iv_pet);
-            mIVWarning = view.findViewById(R.id.iv_warning);
-
             view.setOnClickListener(this);
         }
 

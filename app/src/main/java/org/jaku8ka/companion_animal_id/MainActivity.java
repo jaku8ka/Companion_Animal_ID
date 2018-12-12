@@ -1,13 +1,19 @@
 package org.jaku8ka.companion_animal_id;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SnapHelper;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import org.jaku8ka.companion_animal_id.database.AppDatabase;
 import org.jaku8ka.companion_animal_id.database.TaskEntry;
@@ -48,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.ItemCli
 
             @Override
             public void onSwiped(final RecyclerView.ViewHolder viewHolder, int swipeDir) {
+                // Here is where you'll implement swipe to delete
                 AppExecutors.getInstance().diskIO().execute(new Runnable() {
                     @Override
                     public void run() {
@@ -60,6 +67,8 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.ItemCli
             }
         }).attachToRecyclerView(mRecyclerView);
 
+        SnapHelper snapHelper = new PagerSnapHelper();
+        snapHelper.attachToRecyclerView(mRecyclerView);
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,8 +103,6 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.ItemCli
             }
         });
     }
-
-
 
     @Override
     public void onItemClickListener(int itemId) {

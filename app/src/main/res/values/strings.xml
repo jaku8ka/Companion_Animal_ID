@@ -26,4 +26,7 @@
     <string name="dialog_text">Databaza je prazdna, pridajte nove zviera, mazanie sa uskutocnuje potiahnutim dolava alebo doprava.</string>
     <string name="dialog_title">Upozornenie!!!</string>
 
+    <string name="desc_pb_odc">Stav odcervenia</string>
+    <string name="desc_pb_ock">Stav ockovania</string>
+
 </resources>

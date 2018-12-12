@@ -1,37 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="horizontal"
     android:background="@drawable/myrect">
 
     <ImageView
         android:id="@+id/iv_pet"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/hv_margin"
+        android:layout_width="170dp"
+        android:layout_height="170dp"
         android:layout_gravity="center_vertical"
         android:layout_margin="@dimen/hv_margin"
-        android:background="@color/colorPrimary"
-        android:layout_weight="1"/>
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:contentDescription="@string/cd_pet_image"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/image_catdog" />
 
     <TextView
         android:id="@+id/tv_name"
-        android:layout_width="0dp"
+        android:layout_width="230dp"
         android:layout_height="wrap_content"
-        android:padding="@dimen/rv_height"
-        tools:text="@string/cd_pet_image"
-        android:textSize="24sp"
-        android:layout_weight="10"/>
-
-    <ImageView
-        android:id="@+id/iv_warning"
-        android:background="@color/colorPrimary"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/hv_margin"
-        android:layout_margin="@dimen/hv_margin"
         android:layout_gravity="center_vertical"
-        android:layout_weight="1"/>
+        android:layout_margin="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_pet"
+        tools:text="@string/name_of_pet" />
 
-</LinearLayout>
+
+
+    <ProgressBar
+        android:id="@+id/pb_odc"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_desc_odc" />
+
+    <TextView
+        android:id="@+id/tv_desc_odc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/desc_pb_odc"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+
+    <ProgressBar
+        android:id="@+id/pb_ock"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_desc_ock" />
+
+    <TextView
+        android:id="@+id/tv_desc_ock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pb_odc"
+        android:text="@string/desc_pb_ock" />
+
+</android.support.constraint.ConstraintLayout>

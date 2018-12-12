@@ -15,28 +15,18 @@ public class TaskEntry {
     private String sex;
     private String species;
     private String colorOfPet;
-    private String fur;
-    private String differences;
-    private String chipDate;
-    private String chipNumber;
 
     @Ignore
-    public TaskEntry(String nameOfPet, String petType, String dateOfBirth, String sex, String species, String colorOfPet,
-                     String fur, String differences, String chipDate, String chipNumber) {
+    public TaskEntry(String nameOfPet, String petType, String dateOfBirth, String sex, String species, String colorOfPet) {
         this.nameOfPet = nameOfPet;
         this.petType = petType;
         this.dateOfBirth = dateOfBirth;
         this.sex = sex;
         this.species = species;
         this.colorOfPet = colorOfPet;
-        this.fur = fur;
-        this.differences = differences;
-        this.chipDate = chipDate;
-        this.chipNumber = chipNumber;
     }
 
-    public TaskEntry(int id, String nameOfPet, String petType, String dateOfBirth, String sex, String species, String colorOfPet,
-                     String fur, String differences, String chipDate, String chipNumber) {
+    public TaskEntry(int id, String nameOfPet, String petType, String dateOfBirth, String sex, String species, String colorOfPet) {
         this.id = id;
         this.nameOfPet = nameOfPet;
         this.petType = petType;
@@ -44,10 +34,6 @@ public class TaskEntry {
         this.sex = sex;
         this.species = species;
         this.colorOfPet = colorOfPet;
-        this.fur = fur;
-        this.differences = differences;
-        this.chipDate = chipDate;
-        this.chipNumber = chipNumber;
     }
 
     public int getId() {
@@ -104,37 +90,5 @@ public class TaskEntry {
 
     public void setColorOfPet(String colorOfPet) {
         this.colorOfPet = colorOfPet;
-    }
-
-    public String getFur() {
-        return fur;
-    }
-
-    public void setFur(String fur) {
-        this.fur = fur;
-    }
-
-    public String getDifferences() {
-        return differences;
-    }
-
-    public void setDifferences(String differences) {
-        this.differences = differences;
-    }
-
-    public String getChipDate() {
-        return chipDate;
-    }
-
-    public void setChipDate(String chipDate) {
-        this.chipDate = chipDate;
-    }
-
-    public String getChipNumber() {
-        return chipNumber;
-    }
-
-    public void setChipNumber(String chipNumber) {
-        this.chipNumber = chipNumber;
     }
 }

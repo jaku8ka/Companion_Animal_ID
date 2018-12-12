@@ -19,9 +19,8 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="C:\Users\jaku8\Desktop\add_btn.png" />
-                                      <entry key="outputName" value="fab_btn" />
-                                      <entry key="theme" value="CUSTOM" />
+                                      <entry key="imageAsset" value="C:\Users\jaku8\Desktop\cat_dog.png" />
+                                      <entry key="outputName" value="image_catdog" />
                                       <entry key="themeColor" value="fafafa" />
                                     </map>
                                   </option>
@@ -41,6 +40,11 @@
                 </map>
               </option>
             </PersistentState>
+          </value>
+        </entry>
+        <entry key="vectorWizard">
+          <value>
+            <PersistentState />
           </value>
         </entry>
       </map>

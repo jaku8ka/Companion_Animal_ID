@@ -1,11 +1,13 @@
 package org.jaku8ka.companion_animal_id;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import org.jaku8ka.companion_animal_id.database.AppDatabase;
@@ -32,10 +34,6 @@ public class AddPetActivity extends AppCompatActivity {
     EditText mSex;
     EditText mSpecies;
     EditText mColorOfPet;
-    EditText mTypeOfFur;
-    EditText mDifferences;
-    EditText mDateOfChip;
-    EditText mChipNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,10 +80,6 @@ public class AddPetActivity extends AppCompatActivity {
         mSex = findViewById(R.id.sex);
         mSpecies = findViewById(R.id.species);
         mColorOfPet = findViewById(R.id.color_of_pet);
-        mTypeOfFur = findViewById(R.id.type_of_fur);
-        mDifferences = findViewById(R.id.differences);
-        mDateOfChip = findViewById(R.id.date_of_chip);
-        mChipNumber = findViewById(R.id.chip_number);
 
         mButton = findViewById(R.id.add_pet_btn);
         mButton.setOnClickListener(new View.OnClickListener() {
@@ -100,17 +94,12 @@ public class AddPetActivity extends AppCompatActivity {
         if (task == null) {
             return;
         }
-
-            mNameOfPet.setText(task.getNameOfPet());
-            mTypeOfPet.setText(task.getChipNumber());
-            mDateOfBirth.setText(task.getDateOfBirth());
-            mSex.setText(task.getSex());
-            mSpecies.setText(task.getSpecies());
-            mColorOfPet.setText(task.getColorOfPet());
-            mTypeOfFur.setText(task.getFur());
-            mDifferences.setText(task.getDifferences());
-            mDateOfChip.setText(task.getChipDate());
-            mChipNumber.setText(task.getChipNumber());
+        mNameOfPet.setText(task.getNameOfPet());
+        mTypeOfPet.setText(task.getPetType());
+        mDateOfBirth.setText(task.getDateOfBirth());
+        mSex.setText(task.getSex());
+        mSpecies.setText(task.getSpecies());
+        mColorOfPet.setText(task.getColorOfPet());
     }
 
     public void onSaveButtonClicked() {
@@ -121,10 +110,6 @@ public class AddPetActivity extends AppCompatActivity {
         String sex = mSex.getText().toString();
         String species = mSpecies.getText().toString();
         String colorOfPet = mColorOfPet.getText().toString();
-        String typeOfFur = mTypeOfFur.getText().toString();
-        String differences = mDifferences.getText().toString();
-        String dateOfChip = mDateOfChip.getText().toString();
-        String chipNumber = mChipNumber.getText().toString();
 
         if (nameOfPet.isEmpty()) {
             Toast toast = Toast.makeText(this, "Zadaj meno zvierata!", Toast.LENGTH_SHORT);
@@ -132,7 +117,7 @@ public class AddPetActivity extends AppCompatActivity {
         } else {
 
             final TaskEntry task = new TaskEntry(nameOfPet, typeOfPet, dateOfBirth, sex, species,
-                    colorOfPet, typeOfFur, differences, dateOfChip, chipNumber);
+                    colorOfPet);
             AppExecutors.getInstance().diskIO().execute(new Runnable() {
                 @Override
                 public void run() {
