@@ -1,22 +1,15 @@
 package org.jaku8ka.companion_animal_id;
 
-import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import org.jaku8ka.companion_animal_id.database.AppDatabase;
 import org.jaku8ka.companion_animal_id.database.TaskEntry;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Locale;
 
 public class AddPetActivity extends AppCompatActivity {
 
@@ -107,16 +100,17 @@ public class AddPetActivity extends AppCompatActivity {
         if (task == null) {
             return;
         }
-        mNameOfPet.setText(task.getNameOfPet());
-        mTypeOfPet.setText(task.getChipNumber());
-        mDateOfBirth.setText(task.getDateOfBirth());
-        mSex.setText(task.getSex());
-        mSpecies.setText(task.getSpecies());
-        mColorOfPet.setText(task.getColorOfPet());
-        mTypeOfFur.setText(task.getFur());
-        mDifferences.setText(task.getDifferences());
-        mDateOfChip.setText(task.getChipDate());
-        mChipNumber.setText(task.getChipNumber());
+
+            mNameOfPet.setText(task.getNameOfPet());
+            mTypeOfPet.setText(task.getChipNumber());
+            mDateOfBirth.setText(task.getDateOfBirth());
+            mSex.setText(task.getSex());
+            mSpecies.setText(task.getSpecies());
+            mColorOfPet.setText(task.getColorOfPet());
+            mTypeOfFur.setText(task.getFur());
+            mDifferences.setText(task.getDifferences());
+            mDateOfChip.setText(task.getChipDate());
+            mChipNumber.setText(task.getChipNumber());
     }
 
     public void onSaveButtonClicked() {

@@ -1,9 +1,7 @@
 package org.jaku8ka.companion_animal_id;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,7 +15,7 @@ import org.jaku8ka.companion_animal_id.database.TaskEntry;
 import java.util.List;
 
 
-public class MainActivity extends AppCompatActivity implements MyAdapter.ListItemClickListener {
+public class MainActivity extends AppCompatActivity implements MyAdapter.ItemClickListener {
 
     private RecyclerView mRecyclerView;
     private MyAdapter mAdapter;
@@ -41,12 +39,6 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.ListIte
 
         mAdapter = new MyAdapter(this, this);
         mRecyclerView.setAdapter(mAdapter);
-
-        if(mDb == null) {
-
-            openDialog();
-        }
-
 
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
@@ -106,22 +98,10 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.ListIte
 
 
     @Override
-    public void onListItemClick(int itemId) {
+    public void onItemClickListener(int itemId) {
 
         Intent intent = new Intent(MainActivity.this, AddPetActivity.class);
         intent.putExtra(AddPetActivity.EXTRA_TASK_ID, itemId);
         startActivity(intent);
-    }
-
-    public void openDialog() {
-        AlertDialog alertDialog = new AlertDialog.Builder(this)
-                .setTitle("Hint")
-                .setMessage("Pridaj nove zviera, swipe to delete")
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                    }
-                })
-                .show();
     }
 }

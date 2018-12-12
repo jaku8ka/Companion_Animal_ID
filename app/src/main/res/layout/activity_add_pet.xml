@@ -134,10 +134,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/hvs_padding"
-            android:text="@string/btn_pet_add"
             android:background="@color/colorPrimary"
-            android:textColor="@color/colorAccent"
-            android:textSize="16sp"/>
+            android:text="@string/btn_pet_add"
+            android:textColor="@color/colorBtn"
+            android:textSize="16sp" />
 
     </LinearLayout>
 
