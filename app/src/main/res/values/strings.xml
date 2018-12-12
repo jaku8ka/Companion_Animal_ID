@@ -29,4 +29,12 @@
     <string name="desc_pb_odc">Stav odcervenia</string>
     <string name="desc_pb_ock">Stav ockovania</string>
 
+    <string name="choose_pet">Vyber druh zvierata.</string>
+
+    <string-array name="pet_types">
+        <item>Macka</item>
+        <item>Pes</item>
+        <item>Zajac</item>
+    </string-array>
+
 </resources>

@@ -1,17 +1,23 @@
 package org.jaku8ka.companion_animal_id;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import org.jaku8ka.companion_animal_id.database.AppDatabase;
 import org.jaku8ka.companion_animal_id.database.TaskEntry;
+
+import java.util.Calendar;
 
 public class AddPetActivity extends AppCompatActivity {
 
@@ -133,5 +139,38 @@ public class AddPetActivity extends AppCompatActivity {
 
         }
 
+    }
+
+    public void showDatePickerDialog(View view) {
+        DialogFragment date = new DatePickerFragment();
+
+        Calendar calendar = Calendar.getInstance();
+        Bundle args = new Bundle();
+        args.putInt("year", calendar.get(Calendar.YEAR));
+        args.putInt("month", calendar.get(Calendar.MONTH));
+        args.putInt("day", calendar.get(Calendar.DAY_OF_MONTH));
+        date.setArguments(args);
+
+        ((DatePickerFragment) date).setCallBack(onDate);
+        date.show(getSupportFragmentManager(), "Date Picker");
+    }
+
+    DatePickerDialog.OnDateSetListener onDate = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+            mDateOfBirth.setText(String.valueOf(day) + "." + String.valueOf(month + 1) + "." + String.valueOf(year));
+        }
+    };
+
+    public Dialog onCreateDialog(Bundle savedInstanceSaved) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.choose_pet);
+        builder.setItems(R.array.pet_types, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int which) {
+                
+            }
+        });
+        return builder.create();
     }
 }
