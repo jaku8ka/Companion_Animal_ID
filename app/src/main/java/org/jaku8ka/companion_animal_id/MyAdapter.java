@@ -14,18 +14,51 @@ import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
-    final private ListItemClickListener mOnClickListener;
+    final private ItemClickListener mOnClickListener;
     private List<TaskEntry> mTaskEntries;
 
     private Context mContext;
 
-    public MyAdapter(Context context, ListItemClickListener listener) {
+    public MyAdapter(Context context, ItemClickListener listener) {
         mContext = context;
         mOnClickListener = listener;
     }
 
-    public interface ListItemClickListener {
-        void onListItemClick(int clickedItemIndex);
+    @Override
+    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(mContext).inflate(R.layout.rv_item, parent, false);
+
+        return new MyViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(MyViewHolder holder, int position) {
+        TaskEntry taskEntry = mTaskEntries.get(position);
+
+        String nameOfPet = taskEntry.getNameOfPet();
+
+        holder.mTextView.setText(nameOfPet);
+    }
+
+    @Override
+    public int getItemCount() {
+        if (mTaskEntries == null) {
+            return 0;
+        }
+        return mTaskEntries.size();
+    }
+
+    public List<TaskEntry> getTasks() {
+        return mTaskEntries;
+    }
+
+    public void setTasks(List<TaskEntry> taskEntries) {
+        mTaskEntries = taskEntries;
+        notifyDataSetChanged();
+    }
+
+    public interface ItemClickListener {
+        void onItemClickListener(int itemId);
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -46,41 +79,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         @Override
         public void onClick(View view) {
-            int clickedPosition = getAdapterPosition();
-            mOnClickListener.onListItemClick(clickedPosition);
+            int clickedPosition = mTaskEntries.get(getAdapterPosition()).getId();
+            mOnClickListener.onItemClickListener(clickedPosition);
         }
     }
-
-    public MyAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.rv_item, parent, false);
-
-        return new MyViewHolder(view);
-    }
-
-    @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
-        TaskEntry taskEntry = mTaskEntries.get(position);
-
-        String nameOfPet = taskEntry.getNameOfPet();
-
-        holder.mTextView.setText(nameOfPet);
-    }
-
-    public void setTasks(List<TaskEntry> taskEntries) {
-        mTaskEntries = taskEntries;
-        notifyDataSetChanged();
-    }
-
-    public List<TaskEntry> getTasks() {
-        return mTaskEntries;
-    }
-
-    @Override
-    public int getItemCount(){
-        if (mTaskEntries == null) {
-            return 0;
-        }
-        return mTaskEntries.size();
-    }
-
 }
