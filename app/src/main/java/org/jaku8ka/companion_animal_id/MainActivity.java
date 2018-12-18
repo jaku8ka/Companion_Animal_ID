@@ -1,7 +1,10 @@
 package org.jaku8ka.companion_animal_id;
 
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.Observer;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +14,8 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SnapHelper;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -61,7 +66,6 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.ItemCli
                         int position = viewHolder.getAdapterPosition();
                         List<TaskEntry> tasks = mAdapter.getTasks();
                         mDb.taskDao().deleteTask(tasks.get(position));
-                        retrievePets();
                     }
                 });
             }
@@ -80,26 +84,16 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.ItemCli
 
         mDb = AppDatabase.getInstance(getApplicationContext());
 
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (mDb != null)
-            retrievePets();
+        retrievePets();
     }
 
     private void retrievePets() {
-        AppExecutors.getInstance().diskIO().execute(new Runnable() {
+        LiveData<List<TaskEntry>> tasks = mDb.taskDao().loadAllTasks();
+
+        tasks.observe(this, new Observer<List<TaskEntry>>() {
             @Override
-            public void run() {
-                final List<TaskEntry> tasks = mDb.taskDao().loadAllTasks();
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        mAdapter.setTasks(tasks);
-                    }
-                });
+            public void onChanged(@Nullable List<TaskEntry> taskEntries) {
+                mAdapter.setTasks(taskEntries);
             }
         });
     }
@@ -110,5 +104,28 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.ItemCli
         Intent intent = new Intent(MainActivity.this, AddPetActivity.class);
         intent.putExtra(AddPetActivity.EXTRA_TASK_ID, itemId);
         startActivity(intent);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_items, menu);
+
+        MenuItem menuItem = menu.findItem(R.id.action_save);
+        menuItem.setVisible(false);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.action_setting:
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
     }
 }

@@ -1,12 +1,14 @@
 package org.jaku8ka.companion_animal_id;
 
-import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.Observer;
 import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,6 +32,7 @@ public class AddPetActivity extends AppCompatActivity {
     public static final String EXTRA_TASK_ID = "extraTaskId";
     // Extra for the task ID to be received after rotation
     public static final String INSTANCE_TASK_ID = "instanceTaskId";
+    public static final String INSTANCE_DATE = "instanceDate";
     // Constant for default task id to be used when not in update mode
     private static final int DEFAULT_TASK_ID = -1;
 
@@ -69,23 +72,19 @@ public class AddPetActivity extends AppCompatActivity {
 
                 mTaskId = intent.getIntExtra(EXTRA_TASK_ID, DEFAULT_TASK_ID);
 
-                AppExecutors.getInstance().diskIO().execute(new Runnable() {
+                final LiveData<TaskEntry> task = mDb.taskDao().loadTaskById(mTaskId);
+
+                task.observe(this, new Observer<TaskEntry>() {
                     @Override
-                    public void run() {
-
-                        final TaskEntry task = mDb.taskDao().loadTaskById(mTaskId);
-
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                populateUI(task);
-                            }
-                        });
+                    public void onChanged(@Nullable TaskEntry taskEntry) {
+                        task.removeObserver(this);
+                        populateUI(taskEntry);
                     }
                 });
             }
         }
     }
+
 
     private void initViews() {
 
@@ -206,6 +205,13 @@ public class AddPetActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_items, menu);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
+        MenuItem menuItem = menu.findItem(R.id.action_setting);
+        menuItem.setVisible(false);
+
         return true;
     }
 
@@ -217,12 +223,45 @@ public class AddPetActivity extends AppCompatActivity {
                 onSaveButtonClicked();
                 return true;
 
-            case R.id.action_nothing:
-                return true;
-
             default:
                 return super.onOptionsItemSelected(item);
         }
 
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        String petName = mNameOfPet.getText().toString();
+        int petType = petSpinner;
+        String petDate = mDateOfBirth.getText().toString();
+        int petSex = sexSpinner;
+        String petSpecies = mSpecies.getText().toString();
+        String petColor = mColorOfPet.getText().toString();
+
+        outState.putString("savedName", petName);
+        outState.putInt("savedType", petType);
+        outState.putString("savedDate", petDate);
+        outState.putInt("savedSex", petSex);
+        outState.putString("savedSpecies", petSpecies);
+        outState.putString("savedColor", petColor);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        String petName = savedInstanceState.getString("savedName");
+        int petType = savedInstanceState.getInt("savedType");
+        String petDate = savedInstanceState.getString("savedDate");
+        int petSex = savedInstanceState.getInt("savedSex");
+        String petSpecies = savedInstanceState.getString("savedSpecies");
+        String petColor = savedInstanceState.getString("savedColor");
+
+        mNameOfPet.setText(petName);
+        sTypeOfPet.setSelection(petType);
+        mDateOfBirth.setText(petDate);
+        sSex.setSelection(petSex);
+        mSpecies.setText(petSpecies);
+        mColorOfPet.setText(petColor);
     }
 }
