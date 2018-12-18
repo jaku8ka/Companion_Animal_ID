@@ -121,7 +121,7 @@
             <Button
                 android:id="@+id/add_pet_brthd"
                 android:layout_width="0dp"
-                android:layout_height="35dp"
+                android:layout_height="match_parent"
                 android:layout_gravity="center_vertical|end"
                 android:layout_marginRight="8dp"
                 android:layout_weight="1"
