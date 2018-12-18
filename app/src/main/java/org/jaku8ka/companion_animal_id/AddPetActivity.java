@@ -1,17 +1,22 @@
 package org.jaku8ka.companion_animal_id;
 
-import android.app.AlertDialog;
+import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.jaku8ka.companion_animal_id.database.AppDatabase;
@@ -32,12 +37,15 @@ public class AddPetActivity extends AppCompatActivity {
 
     private AppDatabase mDb;
 
+    private int sexSpinner;
+    private int petSpinner;
+
     Button mButton;
 
     EditText mNameOfPet;
-    EditText mTypeOfPet;
-    EditText mDateOfBirth;
-    EditText mSex;
+    Spinner sTypeOfPet;
+    TextView mDateOfBirth;
+    Spinner sSex;
     EditText mSpecies;
     EditText mColorOfPet;
 
@@ -80,12 +88,45 @@ public class AddPetActivity extends AppCompatActivity {
     }
 
     private void initViews() {
+
         mNameOfPet = findViewById(R.id.name_of_pet);
-        mTypeOfPet = findViewById(R.id.type_of_pet);
         mDateOfBirth = findViewById(R.id.date_of_birth);
-        mSex = findViewById(R.id.sex);
+
+        sSex = findViewById(R.id.sex);
+        ArrayAdapter<CharSequence> adapterSex = ArrayAdapter.createFromResource(this, R.array.sex_types, R.layout.spinner_item);
+        adapterSex.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sSex.setAdapter(adapterSex);
+        sSex.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                sexSpinner = adapterView.getSelectedItemPosition();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
         mSpecies = findViewById(R.id.species);
         mColorOfPet = findViewById(R.id.color_of_pet);
+
+        sTypeOfPet = findViewById(R.id.type_of_pet);
+        ArrayAdapter<CharSequence> adapterPet = ArrayAdapter.createFromResource(this, R.array.pet_types, R.layout.spinner_item);
+        adapterPet.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sTypeOfPet.setAdapter(adapterPet);
+        sTypeOfPet.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                petSpinner = adapterView.getSelectedItemPosition();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
 
         mButton = findViewById(R.id.add_pet_btn);
         mButton.setOnClickListener(new View.OnClickListener() {
@@ -101,9 +142,9 @@ public class AddPetActivity extends AppCompatActivity {
             return;
         }
         mNameOfPet.setText(task.getNameOfPet());
-        mTypeOfPet.setText(task.getPetType());
+        sTypeOfPet.setSelection(task.getPetType());
         mDateOfBirth.setText(task.getDateOfBirth());
-        mSex.setText(task.getSex());
+        sSex.setSelection(task.getSex());
         mSpecies.setText(task.getSpecies());
         mColorOfPet.setText(task.getColorOfPet());
     }
@@ -111,9 +152,9 @@ public class AddPetActivity extends AppCompatActivity {
     public void onSaveButtonClicked() {
 
         String nameOfPet = mNameOfPet.getText().toString();
-        String typeOfPet = mTypeOfPet.getText().toString();
+        int typeOfPet = petSpinner;
         String dateOfBirth = mDateOfBirth.getText().toString();
-        String sex = mSex.getText().toString();
+        int sex = sexSpinner;
         String species = mSpecies.getText().toString();
         String colorOfPet = mColorOfPet.getText().toString();
 
@@ -162,15 +203,26 @@ public class AddPetActivity extends AppCompatActivity {
         }
     };
 
-    public Dialog onCreateDialog(Bundle savedInstanceSaved) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(R.string.choose_pet);
-        builder.setItems(R.array.pet_types, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int which) {
-                
-            }
-        });
-        return builder.create();
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_items, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.action_save:
+                onSaveButtonClicked();
+                return true;
+
+            case R.id.action_nothing:
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
     }
 }

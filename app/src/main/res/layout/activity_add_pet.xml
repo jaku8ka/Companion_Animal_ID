@@ -21,72 +21,214 @@
             android:textStyle="bold"
             tools:text="@string/pet_description" />
 
-        <EditText
-            android:id="@+id/name_of_pet"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/hvs_padding"
-            android:hint="@string/name_of_pet"
-            android:inputType="text" />
+            android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/type_of_pet"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|start"
+                android:layout_margin="@dimen/hvs_padding"
+                android:text="@string/name_of_pet"
+                android:textColor="@color/colorBlack"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/name_of_pet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|end"
+                android:layout_margin="@dimen/hvs_padding"
+                android:autofillHints="@string/edit_name_of_pet"
+                android:background="@android:color/transparent"
+                android:gravity="end"
+                android:hint="@string/edit_name_of_pet"
+                android:inputType="text"
+                android:textColor="@color/colorLineDivider"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/hvs_padding"
-            android:hint="@string/pet_type"
-            android:inputType="text" />
+            android:layout_height="1dp"
+            android:layout_margin="8dp"
+            android:background="@color/colorLineDivider" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/date_of_birth"
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|start"
+                android:layout_margin="@dimen/hvs_padding"
+                android:text="@string/pet_type"
+                android:textColor="@color/colorBlack"
+                android:textSize="18sp" />
+
+            <Spinner
+                android:id="@+id/type_of_pet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|end"
+                android:gravity="end"
+                android:textAlignment="textEnd" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_margin="8dp"
+            android:background="@color/colorLineDivider" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|start"
+                android:layout_margin="@dimen/hvs_padding"
+                android:layout_weight="4"
+                android:text="@string/date_of_birth"
+                android:textColor="@color/colorBlack"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/date_of_birth"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|end"
                 android:layout_margin="8dp"
+                android:layout_weight="4"
                 android:autofillHints="@string/date_of_birth"
-                android:clickable="false"
-                android:focusable="false"
-                android:hint="@string/date_of_birth"
-                android:inputType="date"
-                android:longClickable="false" />
+                android:clickable="true"
+                android:gravity="end"
+                android:hint="@string/choose_date"
+                android:longClickable="false"
+                android:onClick="showDatePickerDialog"
+                android:textColor="@color/colorLineDivider" />
 
             <Button
                 android:id="@+id/add_pet_brthd"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_margin="8dp"
-                android:background="@android:drawable/ic_menu_month"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center_vertical|end"
+                android:layout_marginRight="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/ic_sharp_insert_invitation"
+                android:gravity="end"
                 android:onClick="showDatePickerDialog" />
         </LinearLayout>
 
-        <EditText
-            android:id="@+id/sex"
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_margin="8dp"
+            android:background="@color/colorLineDivider" />
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/hvs_padding"
-            android:hint="@string/sex"
-            android:inputType="text" />
+            android:orientation="horizontal">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|start"
+                android:layout_margin="@dimen/hvs_padding"
+                android:text="@string/sex"
+                android:textColor="@color/colorBlack"
+                android:textSize="18sp" />
 
-        <EditText
-            android:id="@+id/species"
+            <Spinner
+                android:id="@+id/sex"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|end"
+                android:gravity="end"
+                android:textAlignment="textEnd" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_margin="8dp"
+            android:background="@color/colorLineDivider" />
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/hvs_padding"
-            android:hint="@string/species"
-            android:inputType="text" />
+            android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/color_of_pet"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|start"
+                android:layout_margin="@dimen/hvs_padding"
+                android:text="@string/species"
+                android:textColor="@color/colorBlack"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/species"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|end"
+                android:layout_margin="@dimen/hvs_padding"
+                android:background="@android:color/transparent"
+                android:gravity="end"
+                android:hint="@string/edit_species"
+                android:inputType="text"
+                android:textColor="@color/colorLineDivider"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_margin="8dp"
+            android:background="@color/colorLineDivider" />
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/hvs_padding"
-            android:hint="@string/color_of_pet"
-            android:inputType="text" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|start"
+                android:layout_margin="@dimen/hvs_padding"
+                android:text="@string/color_of_pet"
+                android:textColor="@color/colorBlack"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/color_of_pet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|end"
+                android:layout_margin="@dimen/hvs_padding"
+                android:background="@android:color/transparent"
+                android:gravity="end"
+                android:hint="@string/edit_color"
+                android:inputType="text"
+                android:textColor="@color/colorLineDivider"
+                android:textSize="15sp" />
+
+        </LinearLayout>
 
         <Button
             android:id="@+id/add_pet_btn"

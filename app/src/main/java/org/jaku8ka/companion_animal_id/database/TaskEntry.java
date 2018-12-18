@@ -10,14 +10,14 @@ public class TaskEntry {
     @PrimaryKey(autoGenerate = true)
     private int id;
     private String nameOfPet;
-    private String petType;
+    private int petType;
     private String dateOfBirth;
-    private String sex;
+    private int sex;
     private String species;
     private String colorOfPet;
 
     @Ignore
-    public TaskEntry(String nameOfPet, String petType, String dateOfBirth, String sex, String species, String colorOfPet) {
+    public TaskEntry(String nameOfPet, int petType, String dateOfBirth, int sex, String species, String colorOfPet) {
         this.nameOfPet = nameOfPet;
         this.petType = petType;
         this.dateOfBirth = dateOfBirth;
@@ -26,7 +26,7 @@ public class TaskEntry {
         this.colorOfPet = colorOfPet;
     }
 
-    public TaskEntry(int id, String nameOfPet, String petType, String dateOfBirth, String sex, String species, String colorOfPet) {
+    public TaskEntry(int id, String nameOfPet, int petType, String dateOfBirth, int sex, String species, String colorOfPet) {
         this.id = id;
         this.nameOfPet = nameOfPet;
         this.petType = petType;
@@ -52,11 +52,11 @@ public class TaskEntry {
         this.nameOfPet = nameOfPet;
     }
 
-    public String getPetType() {
+    public int getPetType() {
         return petType;
     }
 
-    public void setPetType(String petType) {
+    public void setPetType(int petType) {
         this.petType = petType;
     }
 
@@ -68,11 +68,11 @@ public class TaskEntry {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public String getSex() {
+    public int getSex() {
         return sex;
     }
 
-    public void setSex(String sex) {
+    public void setSex(int sex) {
         this.sex = sex;
     }
 

@@ -6,15 +6,24 @@
     <string name="cd_pet_warning">Pet Warning</string>
 
     <!-- Add pet layout -->
+    <string name="action_save">Ulozit</string>
+    <string name="action_nothing">Storno</string>
+
     <string name="pet_description">Popis zvierata</string>
     <string name="name_of_owner">Majitel</string>
 
-    <string name="name_of_pet">Meno zvierata</string>
+    <string name="choose_spinner">Vybrat</string>
+    <string name="choose_date">Vybrat datum</string>
+    <string name="edit_species">Zadaj druh</string>
+    <string name="edit_color">Zadaj farbu</string>
+
+    <string name="name_of_pet">Meno</string>
+    <string name="edit_name_of_pet">Zadaj meno zvierata</string>
     <string name="date_of_birth">Datum narodenia</string>
     <string name="sex">Pohlavie</string>
     <string name="species">Plemeno</string>
     <string name="pet_type">Druh zvierata</string>
-    <string name="color_of_pet">Farba zvierata</string>
+    <string name="color_of_pet">Farba</string>
     <string name="type_of_fur">Druh srsti</string>
     <string name="differences">Zvlastne znamenia</string>
     <string name="date_of_chip">Datum cipovania</string>
@@ -35,6 +44,11 @@
         <item>Macka</item>
         <item>Pes</item>
         <item>Zajac</item>
+    </string-array>
+
+    <string-array name="sex_types">
+        <item>Samec</item>
+        <item>Samica</item>
     </string-array>
 
 </resources>

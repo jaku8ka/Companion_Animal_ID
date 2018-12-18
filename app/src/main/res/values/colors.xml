@@ -6,4 +6,10 @@
 
     <color name="colorBtn">#fafafa</color>
 
+    <color name="colorLineDivider">#b8b8b8</color>
+
+    <color name="colorGrey">#adadad</color>
+
+    <color name="colorBlack">#000000</color>
+
 </resources>
