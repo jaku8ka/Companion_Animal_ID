@@ -17,10 +17,10 @@
         android:layout_margin="@dimen/hv_margin"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:background="@drawable/ic_android_black_24dp"
         android:contentDescription="@string/cd_pet_image"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/image_catdog" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_name"

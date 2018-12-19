@@ -21,5 +21,13 @@
         android:tint="@color/colorBtn"
         app:srcCompat="@android:drawable/ic_input_add" />
 
+    <ImageView
+        android:id="@+id/empty_view"
+        android:visibility="invisible"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        android:layout_gravity="center_vertical|center"
+        android:background="@drawable/ic_round_sync_problem_24px"/>
+
 </FrameLayout>
 
