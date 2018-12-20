@@ -30,23 +30,25 @@
         android:layout_margin="16dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:textColor="@color/colorBlack"
         android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_pet"
         tools:text="@string/name_of_pet" />
-
 
 
     <ProgressBar
         android:id="@+id/pb_odc"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="0dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_desc_odc" />
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_date_par"
+        app:layout_constraintEnd_toStartOf="@+id/tv_date_next_par"
+        app:layout_constraintStart_toEndOf="@+id/tv_date_par"
+        app:layout_constraintTop_toTopOf="@+id/tv_date_par" />
 
     <TextView
         android:id="@+id/tv_desc_odc"
@@ -54,8 +56,9 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:text="@string/desc_pb_odc"
+        android:textColor="@color/colorPrimary"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_name" />
 
@@ -63,13 +66,13 @@
         android:id="@+id/pb_ock"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="0dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_desc_ock" />
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_date_vac"
+        app:layout_constraintEnd_toStartOf="@+id/tv_date_next_vac"
+        app:layout_constraintStart_toEndOf="@+id/tv_date_vac"
+        app:layout_constraintTop_toTopOf="@+id/tv_date_vac" />
 
     <TextView
         android:id="@+id/tv_desc_ock"
@@ -77,9 +80,93 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/desc_pb_ock"
+        android:textColor="@color/colorPrimary"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pb_odc"
-        android:text="@string/desc_pb_ock" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_date_par" />
+
+    <TextView
+        android:id="@+id/tv_date_par"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="@+id/tv_desc_odc"
+        app:layout_constraintTop_toBottomOf="@+id/tv_desc_odc"
+        android:text="@string/dummy_date" />
+
+    <TextView
+        android:id="@+id/tv_date_vac"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="@+id/tv_desc_ock"
+        app:layout_constraintTop_toBottomOf="@+id/tv_desc_ock"
+        android:text="@string/dummy_date" />
+
+    <TextView
+        android:id="@+id/tv_next_par"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="@string/next_odc"
+        android:textColor="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_desc_odc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_desc_odc"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/tv_next_vac"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="@string/next_ock"
+        android:textColor="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_desc_ock"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_desc_ock" />
+
+    <TextView
+        android:id="@+id/tv_date_next_par"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="@string/dummy_date"
+        app:layout_constraintBottom_toBottomOf="@+id/pb_odc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/pb_odc" />
+
+    <TextView
+        android:id="@+id/tv_date_next_vac"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="@string/dummy_date"
+        app:layout_constraintBottom_toBottomOf="@+id/pb_ock"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/pb_ock" />
+
+    <Button
+        android:id="@+id/btn_par"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:onClick="showDatePickerDialog"
+        android:text="Odcervenie"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pb_ock" />
+
+    <Button
+        android:id="@+id/btn_vac"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:onClick="showDatePickerDialog"
+        android:text="Vakcinacia"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_par" />
 
 </android.support.constraint.ConstraintLayout>

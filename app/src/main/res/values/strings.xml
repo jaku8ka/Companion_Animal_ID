@@ -18,6 +18,9 @@
     <string name="edit_species">Zadaj druh</string>
     <string name="edit_color">Zadaj farbu</string>
 
+    <string name="date_par">Odcervenie</string>
+    <string name="date_vac">Ockovanie</string>
+
     <string name="name_of_pet">Meno</string>
     <string name="edit_name_of_pet">Zadaj meno zvierata</string>
     <string name="date_of_birth">Datum narodenia</string>
@@ -36,8 +39,15 @@
     <string name="dialog_text">Databaza je prazdna, pridajte nove zviera, mazanie sa uskutocnuje potiahnutim dolava alebo doprava.</string>
     <string name="dialog_title">Upozornenie!!!</string>
 
-    <string name="desc_pb_odc">Stav odcervenia</string>
-    <string name="desc_pb_ock">Stav ockovania</string>
+    <string name="desc_pb_odc">Posledne odcervenie</string>
+    <string name="desc_pb_ock">Posledne ockovanie</string>
+
+    <string name="next_odc">Dalsie odcervenie</string>
+    <string name="next_ock">Dalsie ockovanie</string>
+
+    <string name="dummy_date">21.12.2012</string>
+
+
 
     <string name="choose_pet">Vyber druh zvierata.</string>
 

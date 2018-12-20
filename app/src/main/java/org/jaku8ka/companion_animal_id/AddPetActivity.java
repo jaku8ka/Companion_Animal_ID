@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import org.jaku8ka.companion_animal_id.database.AppDatabase;
 import org.jaku8ka.companion_animal_id.database.TaskEntry;
+import org.jaku8ka.companion_animal_id.database.TaskEntryDate;
 
 import java.util.Calendar;
 
@@ -44,7 +45,13 @@ public class AddPetActivity extends AppCompatActivity {
     private int petSpinner;
 
     Button mButton;
+    Button addOdc;
+    Button addVac;
 
+    TextView tvLastOdc;
+    TextView tvNextOdc;
+    TextView tvLastVac;
+    TextView tvNextVac;
     EditText mNameOfPet;
     Spinner sTypeOfPet;
     TextView mDateOfBirth;
@@ -134,6 +141,13 @@ public class AddPetActivity extends AppCompatActivity {
                 onSaveButtonClicked();
             }
         });
+
+        addOdc = findViewById(R.id.btn_par);
+        addVac = findViewById(R.id.btn_vac);
+        tvLastOdc = findViewById(R.id.tv_date_par);
+        tvNextOdc = findViewById(R.id.tv_date_vac);
+        tvLastVac = findViewById(R.id.tv_date_next_par);
+        tvNextVac = findViewById(R.id.tv_date_next_vac);
     }
 
     private void populateUI(TaskEntry task) {
@@ -198,7 +212,7 @@ public class AddPetActivity extends AppCompatActivity {
     DatePickerDialog.OnDateSetListener onDate = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-            mDateOfBirth.setText(String.valueOf(day) + "." + String.valueOf(month + 1) + "." + String.valueOf(year));
+                mDateOfBirth.setText(String.valueOf(day) + "." + String.valueOf(month + 1) + "." + String.valueOf(year));
         }
     };
 
