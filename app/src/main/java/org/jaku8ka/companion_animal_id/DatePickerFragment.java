@@ -1,33 +1,41 @@
 package org.jaku8ka.companion_animal_id;
 
-import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.app.DatePickerDialog;
+import android.widget.DatePicker;
+import android.widget.TextView;
 
-public class DatePickerFragment extends DialogFragment {
-    DatePickerDialog.OnDateSetListener onDateSetListener;
-    private int day, month, year;
+import java.text.DateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
-    public DatePickerFragment() {}
-
-    public void setCallBack(DatePickerDialog.OnDateSetListener onDate) {
-        onDateSetListener = onDate;
-    }
-
-    @SuppressLint("NewApi")
-    @Override
-    public void setArguments(Bundle args) {
-        super.setArguments(args);
-        year = args.getInt("year");
-        month = args.getInt("month");
-        day = args.getInt("day");
-    }
+public class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener{
 
     @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
+    public Dialog onCreateDialog(Bundle savedInstanceState){
+        final Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-        return new DatePickerDialog(getActivity(), onDateSetListener, year, month, day);
+        DatePickerDialog dpd = new DatePickerDialog(getActivity(),this,year,month,day);
+        return  dpd;
+    }
+
+    public void onDateSet(DatePicker view, int year, int month, int day){
+
+        Calendar cal = Calendar.getInstance();
+        cal.setTimeInMillis(0);
+        cal.set(year, month, day, 0, 0, 0);
+        Date chosenDate = cal.getTime();
+
+        DateFormat df = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.getDefault());
+        String formattedDate = df.format(chosenDate);
+
+            TextView tvDateOfBirth = (TextView) getActivity().findViewById(R.id.date_of_birth);
+            tvDateOfBirth.setText(formattedDate);
     }
 }

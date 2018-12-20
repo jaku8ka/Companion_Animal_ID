@@ -115,7 +115,6 @@
                 android:gravity="end"
                 android:hint="@string/choose_date"
                 android:longClickable="false"
-                android:onClick="showDatePickerDialog"
                 android:textColor="@color/colorLineDivider" />
 
             <Button
@@ -126,8 +125,7 @@
                 android:layout_marginRight="8dp"
                 android:layout_weight="1"
                 android:background="@drawable/ic_sharp_insert_invitation"
-                android:gravity="end"
-                android:onClick="showDatePickerDialog" />
+                android:gravity="end" />
         </LinearLayout>
 
         <TextView

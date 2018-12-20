@@ -154,7 +154,6 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Odcervenie"
-        android:onClick="showDatePickerDialog"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pb_ock" />
 
@@ -165,7 +164,6 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Vakcinacia"
-        android:onClick="showDatePickerDialog"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_par" />
 

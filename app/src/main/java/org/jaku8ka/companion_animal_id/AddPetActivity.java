@@ -44,6 +44,7 @@ public class AddPetActivity extends AppCompatActivity {
     private int petSpinner;
 
     Button mButton;
+    Button mBtnDate;
 
     EditText mNameOfPet;
     Spinner sTypeOfPet;
@@ -133,6 +134,16 @@ public class AddPetActivity extends AppCompatActivity {
                 onSaveButtonClicked();
             }
         });
+
+        mBtnDate = findViewById(R.id.add_pet_brthd);
+        mBtnDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DialogFragment dialogFragment = new DatePickerFragment();
+
+                dialogFragment.show(getSupportFragmentManager(), "Date Picker");
+            }
+        });
     }
 
     private void populateUI(TaskEntry task) {
@@ -179,27 +190,6 @@ public class AddPetActivity extends AppCompatActivity {
         }
 
     }
-
-    public void showDatePickerDialog(View view) {
-        DialogFragment date = new DatePickerFragment();
-
-        Calendar calendar = Calendar.getInstance();
-        Bundle args = new Bundle();
-        args.putInt("year", calendar.get(Calendar.YEAR));
-        args.putInt("month", calendar.get(Calendar.MONTH));
-        args.putInt("day", calendar.get(Calendar.DAY_OF_MONTH));
-        date.setArguments(args);
-
-        ((DatePickerFragment) date).setCallBack(onDate);
-        date.show(getSupportFragmentManager(), "Date Picker");
-    }
-
-    DatePickerDialog.OnDateSetListener onDate = new DatePickerDialog.OnDateSetListener() {
-        @Override
-        public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                mDateOfBirth.setText(String.valueOf(day) + "." + String.valueOf(month + 1) + "." + String.valueOf(year));
-        }
-    };
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
