@@ -33,7 +33,6 @@ public class AddPetActivity extends AppCompatActivity {
     public static final String EXTRA_TASK_ID = "extraTaskId";
     // Extra for the task ID to be received after rotation
     public static final String INSTANCE_TASK_ID = "instanceTaskId";
-    public static final String INSTANCE_DATE = "instanceDate";
     // Constant for default task id to be used when not in update mode
     private static final int DEFAULT_TASK_ID = -1;
 
@@ -45,13 +44,7 @@ public class AddPetActivity extends AppCompatActivity {
     private int petSpinner;
 
     Button mButton;
-    Button addOdc;
-    Button addVac;
 
-    TextView tvLastOdc;
-    TextView tvNextOdc;
-    TextView tvLastVac;
-    TextView tvNextVac;
     EditText mNameOfPet;
     Spinner sTypeOfPet;
     TextView mDateOfBirth;
@@ -91,7 +84,6 @@ public class AddPetActivity extends AppCompatActivity {
             }
         }
     }
-
 
     private void initViews() {
 
@@ -141,13 +133,6 @@ public class AddPetActivity extends AppCompatActivity {
                 onSaveButtonClicked();
             }
         });
-
-        addOdc = findViewById(R.id.btn_par);
-        addVac = findViewById(R.id.btn_vac);
-        tvLastOdc = findViewById(R.id.tv_date_par);
-        tvNextOdc = findViewById(R.id.tv_date_vac);
-        tvLastVac = findViewById(R.id.tv_date_next_par);
-        tvNextVac = findViewById(R.id.tv_date_next_vac);
     }
 
     private void populateUI(TaskEntry task) {
