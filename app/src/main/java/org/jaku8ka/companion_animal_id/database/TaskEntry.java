@@ -1,8 +1,12 @@
 package org.jaku8ka.companion_animal_id.database;
 
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
+
+import java.util.Date;
+import java.util.List;
 
 @Entity(tableName = "pet")
 public class TaskEntry {
@@ -15,6 +19,9 @@ public class TaskEntry {
     private int sex;
     private String species;
     private String colorOfPet;
+
+    @Ignore
+    private List<TaskEntryDate> dates;
 
     @Ignore
     public TaskEntry(String nameOfPet, int petType, String dateOfBirth, int sex, String species, String colorOfPet) {
@@ -91,4 +98,13 @@ public class TaskEntry {
     public void setColorOfPet(String colorOfPet) {
         this.colorOfPet = colorOfPet;
     }
+
+    public List<TaskEntryDate> getDates() {
+        return dates;
+    }
+
+    public void setDates(List<TaskEntryDate> dates) {
+        this.dates = dates;
+    }
 }
+

@@ -19,12 +19,27 @@ public interface TaskDao {
     @Insert
     void insertTask(TaskEntry taskEntry);
 
+    @Insert
+    void insertTaskDate(TaskEntryDate taskEntryDate);
+
     @Update(onConflict = OnConflictStrategy.REPLACE)
     void updateTask(TaskEntry taskEntry);
+
+    @Update(onConflict = OnConflictStrategy.REPLACE)
+    void updateTaskDate(TaskEntryDate taskEntryDate);
 
     @Delete
     void deleteTask(TaskEntry taskEntry);
 
+    @Delete
+    void deleteTaskDate(TaskEntryDate taskEntryDate);
+
     @Query("SELECT * FROM pet WHERE id = :id")
     LiveData<TaskEntry> loadTaskById(int id);
+
+    @Query("SELECT * FROM date WHERE dateId = :dateId")
+    LiveData<TaskEntryDate> loadDateById(int dateId);
+
+    @Query("SELECT * FROM date WHERE dateId = :dateId")
+    List<TaskEntryDate> getDates(int dateId);
 }
