@@ -11,8 +11,11 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
 
+import org.jaku8ka.companion_animal_id.database.AppDatabase;
 import org.jaku8ka.companion_animal_id.database.TaskEntry;
+import org.jaku8ka.companion_animal_id.database.TaskEntryDate;
 
+import java.util.Date;
 import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
@@ -36,27 +39,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
+
         TaskEntry taskEntry = mTaskEntries.get(position);
 
         String nameOfPet = taskEntry.getNameOfPet();
         holder.tvName.setText(nameOfPet);
-
-        holder.btnOdc.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                DialogFragment dialogFragment = new DatePickerFragment();
-                dialogFragment.show(((FragmentActivity)mContext).getSupportFragmentManager(), "Date Picker Odc");
-
-            }
-        });
-
-        holder.btnVac.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                DialogFragment dialogFragment = new DatePickerFragment();
-                dialogFragment.show(((FragmentActivity)mContext).getSupportFragmentManager(), "Date Picker Vac");
-            }
-        });
         }
 
     @Override
@@ -88,17 +75,29 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         private Button btnOdc;
         private Button btnVac;
 
-        public MyViewHolder(View view) {
+        private MyViewHolder(View view) {
             super(view);
 
             tvName = view.findViewById(R.id.tv_name);
             view.setOnClickListener(this);
 
             btnOdc = view.findViewById(R.id.btn_par);
-            view.setOnClickListener(this);
+            btnOdc.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    DialogFragment dialogFragment = new DatePickerFragment();
+                    dialogFragment.show(((FragmentActivity)mContext).getSupportFragmentManager(), "Date Picker Odc");
+                }
+            });
 
             btnVac = view.findViewById(R.id.btn_vac);
-            view.setOnClickListener(this);
+            btnVac.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    DialogFragment dialogFragment = new DatePickerFragment();
+                    dialogFragment.show(((FragmentActivity)mContext).getSupportFragmentManager(), "Date Picker Vac");
+                }
+            });
 
             tvLastOdc = view.findViewById(R.id.tv_date_par);
             tvLastVac = view.findViewById(R.id.tv_date_vac);
