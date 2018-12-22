@@ -12,20 +12,21 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-public class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener{
+public class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
 
     @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState){
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
         final Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-        DatePickerDialog dpd = new DatePickerDialog(getActivity(),this,year,month,day);
-        return  dpd;
+        DatePickerDialog dpd = new DatePickerDialog(getActivity(), this, year, month, day);
+
+        return dpd;
     }
 
-    public void onDateSet(DatePicker view, int year, int month, int day){
+    public void onDateSet(DatePicker view, int year, int month, int day) {
 
         Calendar cal = Calendar.getInstance();
         cal.setTimeInMillis(0);
@@ -35,7 +36,20 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
         DateFormat df = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.getDefault());
         String formattedDate = df.format(chosenDate);
 
-            TextView tvDateOfBirth = (TextView) getActivity().findViewById(R.id.date_of_birth);
-            tvDateOfBirth.setText(formattedDate);
+        switch (getTag()) {
+
+            case"Date Picker Brth":
+                TextView tvDateOfBirth = getActivity().findViewById(R.id.date_of_birth);
+                tvDateOfBirth.setText(formattedDate);
+                break;
+            case "Date Picker Odc":
+                TextView tvDatePar = getActivity().findViewById(R.id.tv_date_par);
+                tvDatePar.setText(formattedDate);
+                break;
+            case "Date Picker Vac":
+                TextView tvDateVac = getActivity().findViewById(R.id.tv_date_vac);
+                tvDateVac.setText(formattedDate);
+                break;
+        }
     }
 }

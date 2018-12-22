@@ -1,6 +1,5 @@
 package org.jaku8ka.companion_animal_id;
 
-import android.app.DatePickerDialog;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.Observer;
 import android.content.Intent;
@@ -15,7 +14,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -23,9 +21,6 @@ import android.widget.Toast;
 
 import org.jaku8ka.companion_animal_id.database.AppDatabase;
 import org.jaku8ka.companion_animal_id.database.TaskEntry;
-import org.jaku8ka.companion_animal_id.database.TaskEntryDate;
-
-import java.util.Calendar;
 
 public class AddPetActivity extends AppCompatActivity {
 
@@ -43,15 +38,15 @@ public class AddPetActivity extends AppCompatActivity {
     private int sexSpinner;
     private int petSpinner;
 
-    Button mButton;
+    Button btnSaveUpdate;
     Button mBtnDate;
 
-    EditText mNameOfPet;
+    EditText etNameOfPet;
     Spinner sTypeOfPet;
-    TextView mDateOfBirth;
+    TextView etDateOfBirth;
     Spinner sSex;
-    EditText mSpecies;
-    EditText mColorOfPet;
+    EditText etSpecies;
+    EditText etColorOfPet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +63,7 @@ public class AddPetActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra(EXTRA_TASK_ID)) {
-            mButton.setText(R.string.btn_pet_upd);
+            btnSaveUpdate.setText(R.string.btn_pet_upd);
             if (mTaskId == DEFAULT_TASK_ID) {
 
                 mTaskId = intent.getIntExtra(EXTRA_TASK_ID, DEFAULT_TASK_ID);
@@ -88,8 +83,8 @@ public class AddPetActivity extends AppCompatActivity {
 
     private void initViews() {
 
-        mNameOfPet = findViewById(R.id.name_of_pet);
-        mDateOfBirth = findViewById(R.id.date_of_birth);
+        etNameOfPet = findViewById(R.id.name_of_pet);
+        etDateOfBirth = findViewById(R.id.date_of_birth);
 
         sSex = findViewById(R.id.sex);
         ArrayAdapter<CharSequence> adapterSex = ArrayAdapter.createFromResource(this, R.array.sex_types, R.layout.spinner_item);
@@ -107,8 +102,8 @@ public class AddPetActivity extends AppCompatActivity {
             }
         });
 
-        mSpecies = findViewById(R.id.species);
-        mColorOfPet = findViewById(R.id.color_of_pet);
+        etSpecies = findViewById(R.id.species);
+        etColorOfPet = findViewById(R.id.color_of_pet);
 
         sTypeOfPet = findViewById(R.id.type_of_pet);
         ArrayAdapter<CharSequence> adapterPet = ArrayAdapter.createFromResource(this, R.array.pet_types, R.layout.spinner_item);
@@ -127,8 +122,8 @@ public class AddPetActivity extends AppCompatActivity {
         });
 
 
-        mButton = findViewById(R.id.add_pet_btn);
-        mButton.setOnClickListener(new View.OnClickListener() {
+        btnSaveUpdate = findViewById(R.id.add_pet_btn);
+        btnSaveUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onSaveButtonClicked();
@@ -141,7 +136,7 @@ public class AddPetActivity extends AppCompatActivity {
             public void onClick(View view) {
                 DialogFragment dialogFragment = new DatePickerFragment();
 
-                dialogFragment.show(getSupportFragmentManager(), "Date Picker");
+                dialogFragment.show(getSupportFragmentManager(), "Date Picker Brth");
             }
         });
     }
@@ -150,22 +145,22 @@ public class AddPetActivity extends AppCompatActivity {
         if (task == null) {
             return;
         }
-        mNameOfPet.setText(task.getNameOfPet());
+        etNameOfPet.setText(task.getNameOfPet());
         sTypeOfPet.setSelection(task.getPetType());
-        mDateOfBirth.setText(task.getDateOfBirth());
+        etDateOfBirth.setText(task.getDateOfBirth());
         sSex.setSelection(task.getSex());
-        mSpecies.setText(task.getSpecies());
-        mColorOfPet.setText(task.getColorOfPet());
+        etSpecies.setText(task.getSpecies());
+        etColorOfPet.setText(task.getColorOfPet());
     }
 
     public void onSaveButtonClicked() {
 
-        String nameOfPet = mNameOfPet.getText().toString();
+        String nameOfPet = etNameOfPet.getText().toString();
         int typeOfPet = petSpinner;
-        String dateOfBirth = mDateOfBirth.getText().toString();
+        String dateOfBirth = etDateOfBirth.getText().toString();
         int sex = sexSpinner;
-        String species = mSpecies.getText().toString();
-        String colorOfPet = mColorOfPet.getText().toString();
+        String species = etSpecies.getText().toString();
+        String colorOfPet = etColorOfPet.getText().toString();
 
         if (nameOfPet.isEmpty()) {
             Toast toast = Toast.makeText(this, "Zadaj meno zvierata!", Toast.LENGTH_SHORT);
@@ -222,12 +217,12 @@ public class AddPetActivity extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
-        String petName = mNameOfPet.getText().toString();
+        String petName = etNameOfPet.getText().toString();
         int petType = petSpinner;
-        String petDate = mDateOfBirth.getText().toString();
+        String petDate = etDateOfBirth.getText().toString();
         int petSex = sexSpinner;
-        String petSpecies = mSpecies.getText().toString();
-        String petColor = mColorOfPet.getText().toString();
+        String petSpecies = etSpecies.getText().toString();
+        String petColor = etColorOfPet.getText().toString();
 
         outState.putString("savedName", petName);
         outState.putInt("savedType", petType);
@@ -246,11 +241,11 @@ public class AddPetActivity extends AppCompatActivity {
         String petSpecies = savedInstanceState.getString("savedSpecies");
         String petColor = savedInstanceState.getString("savedColor");
 
-        mNameOfPet.setText(petName);
+        etNameOfPet.setText(petName);
         sTypeOfPet.setSelection(petType);
-        mDateOfBirth.setText(petDate);
+        etDateOfBirth.setText(petDate);
         sSex.setSelection(petSex);
-        mSpecies.setText(petSpecies);
-        mColorOfPet.setText(petColor);
+        etSpecies.setText(petSpecies);
+        etColorOfPet.setText(petColor);
     }
 }
