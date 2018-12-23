@@ -27,6 +27,7 @@ import android.widget.Toast;
 
 import org.jaku8ka.companion_animal_id.database.AppDatabase;
 import org.jaku8ka.companion_animal_id.database.TaskEntry;
+import org.jaku8ka.companion_animal_id.database.TaskEntryDate;
 
 import java.text.BreakIterator;
 import java.util.Calendar;

@@ -7,6 +7,7 @@ import android.app.DatePickerDialog;
 import android.widget.DatePicker;
 import android.widget.TextView;
 
+
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -45,6 +46,7 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
             case "Date Picker Odc":
                 TextView tvDatePar = getActivity().findViewById(R.id.tv_date_par);
                 tvDatePar.setText(formattedDate);
+
                 break;
             case "Date Picker Vac":
                 TextView tvDateVac = getActivity().findViewById(R.id.tv_date_vac);

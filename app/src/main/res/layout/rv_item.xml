@@ -91,18 +91,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:text="Zadaj datum"
         app:layout_constraintStart_toStartOf="@+id/tv_desc_odc"
-        app:layout_constraintTop_toBottomOf="@+id/tv_desc_odc"
-        android:text="@string/dummy_date" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_desc_odc" />
 
     <TextView
         android:id="@+id/tv_date_vac"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:text="Zadaj datum"
         app:layout_constraintStart_toStartOf="@+id/tv_desc_ock"
-        app:layout_constraintTop_toBottomOf="@+id/tv_desc_ock"
-        android:text="@string/dummy_date" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_desc_ock" />
 
     <TextView
         android:id="@+id/tv_next_par"
@@ -132,7 +132,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:text="@string/dummy_date"
+        android:text="///"
         app:layout_constraintBottom_toBottomOf="@+id/pb_odc"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/pb_odc" />
@@ -142,7 +142,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:text="@string/dummy_date"
+        android:text="///"
         app:layout_constraintBottom_toBottomOf="@+id/pb_ock"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/pb_ock" />
