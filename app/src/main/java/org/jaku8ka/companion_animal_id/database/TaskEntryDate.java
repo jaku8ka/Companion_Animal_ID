@@ -8,17 +8,16 @@ import java.util.Date;
 
 import static android.arch.persistence.room.ForeignKey.CASCADE;
 
+@ForeignKey(entity = TaskEntry.class, parentColumns = "id", childColumns = "dateId", onDelete = CASCADE)
 @Entity(tableName = "date")
 public class TaskEntryDate {
+    @PrimaryKey
     private int id;
     private Date vaccine;
     private Date parasite;
+    private long dateId;
 
-    @ForeignKey(entity = TaskEntry.class, parentColumns = "id", childColumns = "dateId", onDelete = CASCADE)
-    @PrimaryKey(autoGenerate = true)
-    private int dateId;
-
-    public TaskEntryDate(int id, Date vaccine, Date parasite, int dateId) {
+    public TaskEntryDate(int id, Date vaccine, Date parasite, long dateId) {
         this.id = id;
         this.vaccine = vaccine;
         this.parasite = parasite;
@@ -49,11 +48,11 @@ public class TaskEntryDate {
         this.parasite = parasite;
     }
 
-    public int getDateId() {
+    public long getDateId() {
         return dateId;
     }
 
-    public void setDateId(int dateId) {
+    public void setDateId(long dateId) {
         this.dateId = dateId;
     }
 }
