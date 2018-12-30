@@ -80,7 +80,6 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.ItemCli
 
         retrievePets();
 
-
     }
 
     private void retrievePets() {

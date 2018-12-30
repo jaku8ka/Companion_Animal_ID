@@ -57,7 +57,7 @@ public class AlertDialogFragment extends DialogFragment {
             @Override
             protected void onPostExecute(Void aVoid) {
                 super.onPostExecute(aVoid);
-                Toast.makeText(getActivity().getApplicationContext(), "Vymazane", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity().getApplicationContext(), "Vymazane - " + taskEntryDel.getNameOfPet(), Toast.LENGTH_SHORT).show();
             }
         }
 
