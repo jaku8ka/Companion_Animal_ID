@@ -23,6 +23,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.ItemCli
     private RecyclerView.LayoutManager mLayoutManager;
 
     private AppDatabase mDb;
+    private LinearLayout linearLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +53,8 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.ItemCli
         mRecyclerView = findViewById(R.id.my_recycler_view);
 
         FloatingActionButton fab = findViewById(R.id.fab_btn);
+
+        linearLayout = findViewById(R.id.ll_empty_db);
 
         mRecyclerView.setHasFixedSize(true);
 
@@ -75,6 +79,8 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.ItemCli
         mDb = AppDatabase.getInstance(getApplicationContext());
 
         retrievePets();
+
+
     }
 
     private void retrievePets() {
@@ -84,6 +90,10 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.ItemCli
             @Override
             public void onChanged(@Nullable List<TaskEntry> taskEntries) {
                 mAdapter.setTasks(taskEntries);
+
+                if (mAdapter.getItemCount() == 0) {
+                    linearLayout.setVisibility(View.VISIBLE);
+                } else linearLayout.setVisibility(View.GONE);
             }
         });
     }

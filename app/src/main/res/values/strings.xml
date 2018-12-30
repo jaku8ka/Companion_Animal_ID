@@ -62,4 +62,7 @@
         <item>Samica</item>
     </string-array>
 
+    <string name="db_empty_one">ERROR!</string>
+    <string name="db_empty_two">Databaza zvierat je prazdna!</string>
+
 </resources>

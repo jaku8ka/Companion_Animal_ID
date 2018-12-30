@@ -23,5 +23,42 @@
         android:tint="@color/colorBtn"
         app:srcCompat="@android:drawable/ic_input_add" />
 
+    <LinearLayout
+        android:id="@+id/ll_empty_db"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|center_vertical"
+        android:background="@drawable/rouned_corners"
+        android:backgroundTint="@color/colorAccent"
+        android:elevation="10dp"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/db_empty_one"
+            android:textColor="@color/colorBtn"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/db_empty_two"
+            android:textColor="@color/colorBtn" />
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:background="@drawable/ic_exclamation"
+            android:backgroundTint="@color/colorBtn"
+            android:contentDescription="Error" />
+    </LinearLayout>
+
 </FrameLayout>
 
