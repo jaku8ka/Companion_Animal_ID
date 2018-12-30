@@ -11,14 +11,17 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.jaku8ka.companion_animal_id.database.AppDatabase;
@@ -56,14 +59,29 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         String nameOfPet = taskEntry.getNameOfPet();
         holder.tvName.setText(nameOfPet);
 
+        switch (taskEntry.getPetType()) {
+            case 0:
+                holder.ivPet.setBackground(ContextCompat.getDrawable(mContext, R.drawable.ic_cat));
+                break;
+
+            case 1:
+                holder.ivPet.setBackground(ContextCompat.getDrawable(mContext, R.drawable.ic_dog));
+                break;
+
+            case 2:
+                holder.ivPet.setBackground(ContextCompat.getDrawable(mContext, R.drawable.ic_rabbit));
+                break;
+        }
+
+
         holder.btnDel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 DialogFragment dialogFragment = AlertDialogFragment.newInstance(taskEntry);
-                dialogFragment.show(((FragmentActivity)mContext).getSupportFragmentManager(), "Delete");
+                dialogFragment.show(((FragmentActivity) mContext).getSupportFragmentManager(), "Delete");
             }
         });
-        }
+    }
 
     @Override
     public int getItemCount() {
@@ -89,6 +107,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private TextView tvName;
+        private ImageView ivPet;
         private Button btnOdc;
         private Button btnVac;
         private Button btnDel;
@@ -101,12 +120,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             tvName = view.findViewById(R.id.tv_name);
             view.setOnClickListener(this);
 
+            ivPet = view.findViewById(R.id.iv_pet);
+
             btnOdc = view.findViewById(R.id.btn_par);
             btnOdc.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     DialogFragment dialogFragment = new DatePickerFragment();
-                    dialogFragment.show(((FragmentActivity)mContext).getSupportFragmentManager(), "Date Picker Odc");
+                    dialogFragment.show(((FragmentActivity) mContext).getSupportFragmentManager(), "Date Picker Odc");
                 }
             });
 
@@ -115,7 +136,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                 @Override
                 public void onClick(View view) {
                     DialogFragment dialogFragment = new DatePickerFragment();
-                    dialogFragment.show(((FragmentActivity)mContext).getSupportFragmentManager(), "Date Picker Vac");
+                    dialogFragment.show(((FragmentActivity) mContext).getSupportFragmentManager(), "Date Picker Vac");
                 }
             });
 

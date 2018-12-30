@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
+import android.widget.Toast;
 
 import org.jaku8ka.companion_animal_id.database.AppDatabase;
 import org.jaku8ka.companion_animal_id.database.TaskEntry;
@@ -51,6 +52,12 @@ public class AlertDialogFragment extends DialogFragment {
             protected Void doInBackground(Void... voids) {
                 AppDatabase.getInstance(getActivity().getApplicationContext()).taskDao().deleteTask(taskEntry);
                 return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+                Toast.makeText(getActivity().getApplicationContext(), "Vymazane", Toast.LENGTH_SHORT).show();
             }
         }
 
