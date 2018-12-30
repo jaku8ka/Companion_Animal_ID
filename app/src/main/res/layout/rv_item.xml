@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
-    android:background="@drawable/myrect">
+    android:background="@drawable/rouned_corners"
+    android:orientation="horizontal">
 
     <ImageView
         android:id="@+id/iv_pet"
@@ -17,7 +16,7 @@
         android:layout_margin="@dimen/hv_margin"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:background="@drawable/ic_android_black_24dp"
+        android:background="@drawable/ic_exclamation"
         android:contentDescription="@string/cd_pet_image"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -175,7 +174,6 @@
         android:layout_marginEnd="8dp"
         android:background="@drawable/ic_clear_black_24dp"
         android:backgroundTint="@color/colorAccent"
-        android:elevation="@dimen/horizontal_margin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
