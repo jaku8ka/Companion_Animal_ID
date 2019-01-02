@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">Companion Animal ID</string>
+    <string name="app_name">Companion Animal</string>
+    <string name="app_main">Moje zvierata</string>
+    <string name="app_add">Udaje o zvierati</string>
 
     <!-- Content description -->
     <string name="cd_pet_image">Pet Image</string>
@@ -70,15 +72,15 @@
     </string-array>
 
     <string-array name="odc_loop">
-        <item>1 mesiac</item>
-        <item>3 mesiace</item>
-        <item>6 mesiacov</item>
+        <item>1</item>
+        <item>3</item>
+        <item>6</item>
     </string-array>
 
     <string-array name="vac_loop">
-        <item>6 mesiacov</item>
-        <item>12 mesiacov</item>
-        <item>24 mesiacov</item>
+        <item>6</item>
+        <item>12</item>
+        <item>24</item>
     </string-array>
 
     <string name="db_empty_one">CHYBA!</string>

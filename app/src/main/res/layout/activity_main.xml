@@ -20,7 +20,8 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
         android:tint="@color/colorBtn"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        app:backgroundTint="@color/colorPrimary"
+        app:srcCompat="@drawable/ic_add_black_24dp" />
 
     <LinearLayout
         android:id="@+id/ll_empty_db"

@@ -1,10 +1,12 @@
 package org.jaku8ka.companion_animal_id;
 
 import android.content.Context;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +16,13 @@ import android.widget.TextView;
 
 import org.jaku8ka.companion_animal_id.database.TaskEntry;
 
+import java.io.Console;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
@@ -44,10 +52,74 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.tvName.setText(nameOfPet);
 
         String dateOfOdc = taskEntry.getDateOfOdc();
-        holder.tvLastOdc.setText(dateOfOdc);
+        DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
+
+        String nextOdc = null;
+        try {
+            Date dateOdc = dateFormat.parse(dateOfOdc);
+            int monthValue = taskEntry.getNextOdc();
+            int myMonthValue;
+            switch (monthValue) {
+                case 0:
+                    myMonthValue = 1;
+                    break;
+                case 1:
+                    myMonthValue = 3;
+                    break;
+                case 2:
+                    myMonthValue = 6;
+                    break;
+                    default:
+                        myMonthValue = 0;
+            }
+            dateOdc.setMonth(dateOdc.getMonth() + myMonthValue);
+            nextOdc = dateFormat.format(dateOdc);
+            System.out.println(nextOdc);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        if (dateOfOdc.isEmpty()) {
+            holder.tvLastOdc.setText("///");
+            holder.tvNextOdc.setText("///");
+        } else {
+            holder.tvLastOdc.setText(dateOfOdc);
+            holder.tvNextOdc.setText(nextOdc);
+        }
 
         String dateOfVac = taskEntry.getDateOfVac();
-        holder.tvLastVac.setText(dateOfVac);
+
+        String nextVac = null;
+        try {
+            Date dateVac = dateFormat.parse(dateOfVac);
+            int monthValue = taskEntry.getNextVac();
+            int myMonthValue;
+            switch (monthValue) {
+                case 0:
+                    myMonthValue = 6;
+                    break;
+                case 1:
+                    myMonthValue = 12;
+                    break;
+                case 2:
+                    myMonthValue = 24;
+                    break;
+                default:
+                    myMonthValue = 0;
+            }
+            dateVac.setMonth(dateVac.getMonth() + myMonthValue);
+            nextVac = dateFormat.format(dateVac);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        if (dateOfVac.isEmpty()) {
+            holder.tvLastVac.setText("///");
+            holder.tvNextVac.setText("///");
+        } else {
+            holder.tvLastVac.setText(dateOfVac);
+            holder.tvNextVac.setText(nextVac);
+        }
 
         switch (taskEntry.getPetType()) {
             case 0:
@@ -101,12 +173,15 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         private Button btnDel;
         private TextView tvLastOdc;
         private TextView tvLastVac;
+        private TextView tvNextOdc;
+        private TextView tvNextVac;
+        private ConstraintLayout constraintLayout;
+
 
         private MyViewHolder(View view) {
             super(view);
 
             tvName = view.findViewById(R.id.tv_name);
-            view.setOnClickListener(this);
 
             ivPet = view.findViewById(R.id.iv_pet);
 
@@ -114,6 +189,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
             tvLastOdc = view.findViewById(R.id.tv_date_par);
             tvLastVac = view.findViewById(R.id.tv_date_vac);
+            tvNextOdc = view.findViewById(R.id.tv_date_next_par);
+            tvNextVac = view.findViewById(R.id.tv_date_next_vac);
+
+            constraintLayout = view.findViewById(R.id.con_layout);
+            constraintLayout.setOnClickListener(this);
         }
 
         @Override

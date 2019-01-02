@@ -7,9 +7,11 @@
     android:layout_height="match_parent">
 
     <android.support.constraint.ConstraintLayout
+        android:id="@+id/con_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/rouned_corners">
+        android:background="@drawable/rouned_corners"
+        android:padding="8dp">
 
         <ImageView
             android:id="@+id/iv_pet"
@@ -17,7 +19,6 @@
             android:layout_height="150dp"
             android:layout_gravity="center_vertical"
             android:layout_margin="@dimen/hv_margin"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/ic_android_black_24dp"
             android:contentDescription="@string/cd_pet_image"
@@ -30,7 +31,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_margin="16dp"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:textColor="@color/colorBlack"
             android:textSize="24sp"
@@ -57,7 +57,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:text="@string/desc_pb_odc"
             android:textColor="@color/colorPrimary"
@@ -81,7 +80,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:text="@string/desc_pb_ock"
             android:textColor="@color/colorPrimary"
@@ -148,28 +146,6 @@
             app:layout_constraintBottom_toBottomOf="@+id/pb_ock"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/pb_ock" />
-
-        <Button
-            android:id="@+id/btn_par"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="48dp"
-            android:text="@string/odcervenie"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/pb_ock" />
-
-        <Button
-            android:id="@+id/btn_vac"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="16dp"
-            android:text="@string/vakcinacia"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_par" />
 
         <Button
             android:id="@+id/btn_delete"
