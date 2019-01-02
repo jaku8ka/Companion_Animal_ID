@@ -38,15 +38,24 @@ public class AddPetActivity extends AppCompatActivity {
     private int sexSpinner;
     private int petSpinner;
 
-    Button btnSaveUpdate;
-    Button mBtnDate;
+    private int odcSpinner;
+    private int vacSpinner;
+
+    Button mBtnDateOfBirth;
+    Button mBtnDateOfOdc;
+    Button mBtnDateOfVac;
 
     EditText etNameOfPet;
     Spinner sTypeOfPet;
-    TextView etDateOfBirth;
+    TextView tvDateOfBirth;
     Spinner sSex;
     EditText etSpecies;
     EditText etColorOfPet;
+    TextView tvDateOfOdc;
+    Spinner sOdc;
+    TextView tvDateOfVac;
+    Spinner sVac;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +72,6 @@ public class AddPetActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra(EXTRA_TASK_ID)) {
-            btnSaveUpdate.setText(R.string.btn_pet_upd);
             if (mTaskId == DEFAULT_TASK_ID) {
 
                 mTaskId = intent.getIntExtra(EXTRA_TASK_ID, DEFAULT_TASK_ID);
@@ -84,7 +92,7 @@ public class AddPetActivity extends AppCompatActivity {
     private void initViews() {
 
         etNameOfPet = findViewById(R.id.name_of_pet);
-        etDateOfBirth = findViewById(R.id.date_of_birth);
+        tvDateOfBirth = findViewById(R.id.date_of_birth);
 
         sSex = findViewById(R.id.sex);
         ArrayAdapter<CharSequence> adapterSex = ArrayAdapter.createFromResource(this, R.array.sex_types, R.layout.spinner_item);
@@ -121,17 +129,8 @@ public class AddPetActivity extends AppCompatActivity {
             }
         });
 
-
-        btnSaveUpdate = findViewById(R.id.add_pet_btn);
-        btnSaveUpdate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onSaveButtonClicked();
-            }
-        });
-
-        mBtnDate = findViewById(R.id.add_pet_brthd);
-        mBtnDate.setOnClickListener(new View.OnClickListener() {
+        mBtnDateOfBirth = findViewById(R.id.add_pet_brthd);
+        mBtnDateOfBirth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 DialogFragment dialogFragment = new DatePickerFragment();
@@ -139,6 +138,63 @@ public class AddPetActivity extends AppCompatActivity {
                 dialogFragment.show(getSupportFragmentManager(), "Date Picker Brth");
             }
         });
+
+        mBtnDateOfOdc = findViewById(R.id.add_pet_odc);
+        mBtnDateOfOdc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DialogFragment dialogFragment = new DatePickerFragment();
+
+                dialogFragment.show(getSupportFragmentManager(), "Date Picker Odc");
+            }
+        });
+
+        tvDateOfOdc = findViewById(R.id.date_of_odc);
+
+        sOdc = findViewById(R.id.loop_odc);
+        ArrayAdapter<CharSequence> adapterOdc = ArrayAdapter.createFromResource(this, R.array.odc_loop, R.layout.spinner_item);
+        adapterOdc.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sOdc.setAdapter(adapterOdc);
+        sOdc.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                odcSpinner = adapterView.getSelectedItemPosition();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        mBtnDateOfVac = findViewById(R.id.add_pet_vac);
+        mBtnDateOfVac.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DialogFragment dialogFragment = new DatePickerFragment();
+
+                dialogFragment.show(getSupportFragmentManager(), "Date Picker Vac");
+            }
+        });
+
+        tvDateOfVac = findViewById(R.id.date_of_vac);
+
+        sVac = findViewById(R.id.loop_vac);
+        ArrayAdapter<CharSequence> adapterVac = ArrayAdapter.createFromResource(this, R.array.vac_loop, R.layout.spinner_item);
+        adapterVac.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sVac.setAdapter(adapterVac);
+        sVac.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                vacSpinner = adapterView.getSelectedItemPosition();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
     }
 
     private void populateUI(TaskEntry task) {
@@ -147,20 +203,29 @@ public class AddPetActivity extends AppCompatActivity {
         }
         etNameOfPet.setText(task.getNameOfPet());
         sTypeOfPet.setSelection(task.getPetType());
-        etDateOfBirth.setText(task.getDateOfBirth());
+        tvDateOfBirth.setText(task.getDateOfBirth());
         sSex.setSelection(task.getSex());
         etSpecies.setText(task.getSpecies());
         etColorOfPet.setText(task.getColorOfPet());
+        tvDateOfOdc.setText(task.getDateOfOdc());
+        sOdc.setSelection(task.getNextOdc());
+        tvDateOfVac.setText(task.getDateOfVac());
+        sVac.setSelection(task.getNextVac());
     }
 
     public void onSaveButtonClicked() {
 
         String nameOfPet = etNameOfPet.getText().toString();
         int typeOfPet = petSpinner;
-        String dateOfBirth = etDateOfBirth.getText().toString();
+        String dateOfBirth = tvDateOfBirth.getText().toString();
         int sex = sexSpinner;
         String species = etSpecies.getText().toString();
         String colorOfPet = etColorOfPet.getText().toString();
+
+        String dateOfOdc = tvDateOfOdc.getText().toString();
+        int loopOdc = odcSpinner;
+        String dateOfVac = tvDateOfVac.getText().toString();
+        int loopVac = vacSpinner;
 
         if (nameOfPet.isEmpty()) {
             Toast toast = Toast.makeText(this, "Zadaj meno zvierata!", Toast.LENGTH_SHORT);
@@ -168,7 +233,7 @@ public class AddPetActivity extends AppCompatActivity {
         } else {
 
             final TaskEntry task = new TaskEntry(nameOfPet, typeOfPet, dateOfBirth, sex, species,
-                    colorOfPet);
+                    colorOfPet, dateOfOdc, dateOfVac, loopOdc, loopVac);
             AppExecutors.getInstance().diskIO().execute(new Runnable() {
                 @Override
                 public void run() {
@@ -219,10 +284,14 @@ public class AddPetActivity extends AppCompatActivity {
 
         String petName = etNameOfPet.getText().toString();
         int petType = petSpinner;
-        String petDate = etDateOfBirth.getText().toString();
+        String petDate = tvDateOfBirth.getText().toString();
         int petSex = sexSpinner;
         String petSpecies = etSpecies.getText().toString();
         String petColor = etColorOfPet.getText().toString();
+        String odcDate = tvDateOfOdc.getText().toString();
+        int odcLoop = odcSpinner;
+        String vacDate = tvDateOfVac.getText().toString();
+        int vacLoop = vacSpinner;
 
         outState.putString("savedName", petName);
         outState.putInt("savedType", petType);
@@ -230,6 +299,10 @@ public class AddPetActivity extends AppCompatActivity {
         outState.putInt("savedSex", petSex);
         outState.putString("savedSpecies", petSpecies);
         outState.putString("savedColor", petColor);
+        outState.putString("savedDateOdc", odcDate);
+        outState.putInt("savedLoopOdc", odcLoop);
+        outState.putString("savedDateVac", vacDate);
+        outState.putInt("savedLoopVac", vacLoop);
     }
 
     @Override
@@ -240,12 +313,20 @@ public class AddPetActivity extends AppCompatActivity {
         int petSex = savedInstanceState.getInt("savedSex");
         String petSpecies = savedInstanceState.getString("savedSpecies");
         String petColor = savedInstanceState.getString("savedColor");
+        String odcDate = savedInstanceState.getString("savedDateOdc");
+        int odcLoop = savedInstanceState.getInt("savedLoopOdc");
+        String vacDate = savedInstanceState.getString("savedDateVac");
+        int vacLoop = savedInstanceState.getInt("savedLoopVac");
 
         etNameOfPet.setText(petName);
         sTypeOfPet.setSelection(petType);
-        etDateOfBirth.setText(petDate);
+        tvDateOfBirth.setText(petDate);
         sSex.setSelection(petSex);
         etSpecies.setText(petSpecies);
         etColorOfPet.setText(petColor);
+        tvDateOfOdc.setText(odcDate);
+        sOdc.setSelection(odcLoop);
+        tvDateOfVac.setText(vacDate);
+        sVac.setSelection(vacLoop);
     }
 }

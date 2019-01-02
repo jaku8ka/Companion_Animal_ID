@@ -24,6 +24,13 @@
     <string name="name_of_pet">Meno</string>
     <string name="edit_name_of_pet">Zadaj meno zvierata</string>
     <string name="date_of_birth">Datum narodenia</string>
+
+    <string name="date_of_odc">Datum odcervenia</string>
+    <string name="date_of_vac">Datum vakcinacie</string>
+
+    <string name="loop_odc">Odcervit o</string>
+    <string name="loop_vac">Vakcinovat o</string>
+
     <string name="sex">Pohlavie</string>
     <string name="species">Plemeno</string>
     <string name="pet_type">Druh zvierata</string>
@@ -62,7 +69,24 @@
         <item>Samica</item>
     </string-array>
 
-    <string name="db_empty_one">ERROR!</string>
+    <string-array name="odc_loop">
+        <item>1 mesiac</item>
+        <item>3 mesiace</item>
+        <item>6 mesiacov</item>
+    </string-array>
+
+    <string-array name="vac_loop">
+        <item>6 mesiacov</item>
+        <item>12 mesiacov</item>
+        <item>24 mesiacov</item>
+    </string-array>
+
+    <string name="db_empty_one">CHYBA!</string>
     <string name="db_empty_two">Databaza zvierat je prazdna!</string>
+    <string name="error">Error</string>
+    <string name="zadaj_datum">Zadaj datum</string>
+    <string name="empty">///</string>
+    <string name="odcervenie">Odcervenie</string>
+    <string name="vakcinacia">Vakcinacia</string>
 
 </resources>

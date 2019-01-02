@@ -21,20 +21,27 @@ public class TaskEntry {
     private String species;
     private String colorOfPet;
 
-    @Ignore
-    private List<TaskEntryDate> dates;
+
+    private String dateOfOdc;
+    private String dateOfVac;
+    private int nextOdc;
+    private int nextVac;
 
     @Ignore
-    public TaskEntry(String nameOfPet, int petType, String dateOfBirth, int sex, String species, String colorOfPet) {
+    public TaskEntry(String nameOfPet, int petType, String dateOfBirth, int sex, String species, String colorOfPet, String dateOfOdc, String dateOfVac, int nextOdc, int nextVac) {
         this.nameOfPet = nameOfPet;
         this.petType = petType;
         this.dateOfBirth = dateOfBirth;
         this.sex = sex;
         this.species = species;
         this.colorOfPet = colorOfPet;
+        this.dateOfOdc = dateOfOdc;
+        this.dateOfVac = dateOfVac;
+        this.nextOdc = nextOdc;
+        this.nextVac = nextVac;
     }
 
-    public TaskEntry(int id, String nameOfPet, int petType, String dateOfBirth, int sex, String species, String colorOfPet) {
+    public TaskEntry(int id, String nameOfPet, int petType, String dateOfBirth, int sex, String species, String colorOfPet, String dateOfOdc, String dateOfVac, int nextOdc, int nextVac) {
         this.id = id;
         this.nameOfPet = nameOfPet;
         this.petType = petType;
@@ -42,6 +49,10 @@ public class TaskEntry {
         this.sex = sex;
         this.species = species;
         this.colorOfPet = colorOfPet;
+        this.dateOfOdc = dateOfOdc;
+        this.dateOfVac = dateOfVac;
+        this.nextOdc = nextOdc;
+        this.nextVac = nextVac;
     }
 
     public int getId() {
@@ -100,12 +111,36 @@ public class TaskEntry {
         this.colorOfPet = colorOfPet;
     }
 
-    public List<TaskEntryDate> getDates() {
-        return dates;
+    public String getDateOfOdc() {
+        return dateOfOdc;
     }
 
-    public void setDates(List<TaskEntryDate> dates) {
-        this.dates = dates;
+    public void setDateOfOdc(String dateOfOdc) {
+        this.dateOfOdc = dateOfOdc;
+    }
+
+    public String getDateOfVac() {
+        return dateOfVac;
+    }
+
+    public void setDateOfVac(String dateOfVac) {
+        this.dateOfVac = dateOfVac;
+    }
+
+    public int getNextOdc() {
+        return nextOdc;
+    }
+
+    public void setNextOdc(int nextOdc) {
+        this.nextOdc = nextOdc;
+    }
+
+    public int getNextVac() {
+        return nextVac;
+    }
+
+    public void setNextVac(int nextVac) {
+        this.nextVac = nextVac;
     }
 }
 

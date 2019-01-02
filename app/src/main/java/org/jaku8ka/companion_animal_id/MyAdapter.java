@@ -1,17 +1,6 @@
 package org.jaku8ka.companion_animal_id;
 
-import android.app.AlertDialog;
-import android.arch.lifecycle.Lifecycle;
-import android.arch.lifecycle.LifecycleOwner;
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.Observer;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.os.AsyncTask;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
@@ -20,16 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.jaku8ka.companion_animal_id.database.AppDatabase;
-import org.jaku8ka.companion_animal_id.database.TaskDao;
 import org.jaku8ka.companion_animal_id.database.TaskEntry;
-import org.jaku8ka.companion_animal_id.database.TaskEntryDate;
 
-import java.util.Date;
 import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
@@ -58,6 +42,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         String nameOfPet = taskEntry.getNameOfPet();
         holder.tvName.setText(nameOfPet);
+
+        String dateOfOdc = taskEntry.getDateOfOdc();
+        holder.tvLastOdc.setText(dateOfOdc);
+
+        String dateOfVac = taskEntry.getDateOfVac();
+        holder.tvLastVac.setText(dateOfVac);
 
         switch (taskEntry.getPetType()) {
             case 0:
@@ -108,8 +98,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         private TextView tvName;
         private ImageView ivPet;
-        private Button btnOdc;
-        private Button btnVac;
         private Button btnDel;
         private TextView tvLastOdc;
         private TextView tvLastVac;
@@ -121,24 +109,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             view.setOnClickListener(this);
 
             ivPet = view.findViewById(R.id.iv_pet);
-
-            btnOdc = view.findViewById(R.id.btn_par);
-            btnOdc.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    DialogFragment dialogFragment = new DatePickerFragment();
-                    dialogFragment.show(((FragmentActivity) mContext).getSupportFragmentManager(), "Date Picker Odc");
-                }
-            });
-
-            btnVac = view.findViewById(R.id.btn_vac);
-            btnVac.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    DialogFragment dialogFragment = new DatePickerFragment();
-                    dialogFragment.show(((FragmentActivity) mContext).getSupportFragmentManager(), "Date Picker Vac");
-                }
-            });
 
             btnDel = view.findViewById(R.id.btn_delete);
 

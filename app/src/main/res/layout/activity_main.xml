@@ -56,7 +56,7 @@
             android:layout_margin="10dp"
             android:background="@drawable/ic_exclamation"
             android:backgroundTint="@color/colorBtn"
-            android:contentDescription="Error" />
+            android:contentDescription="@string/error" />
     </LinearLayout>
 
 </FrameLayout>

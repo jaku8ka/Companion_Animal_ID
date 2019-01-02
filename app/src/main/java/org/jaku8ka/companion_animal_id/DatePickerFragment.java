@@ -44,12 +44,12 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
                 tvDateOfBirth.setText(formattedDate);
                 break;
             case "Date Picker Odc":
-                TextView tvDatePar = getActivity().findViewById(R.id.tv_date_par);
-                tvDatePar.setText(formattedDate);
+                TextView tvDateOdc = getActivity().findViewById(R.id.date_of_odc);
+                tvDateOdc.setText(formattedDate);
 
                 break;
             case "Date Picker Vac":
-                TextView tvDateVac = getActivity().findViewById(R.id.tv_date_vac);
+                TextView tvDateVac = getActivity().findViewById(R.id.date_of_vac);
                 tvDateVac.setText(formattedDate);
                 break;
         }

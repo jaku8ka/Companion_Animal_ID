@@ -8,7 +8,7 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@drawable/rouned_corners">
 
         <ImageView
@@ -93,7 +93,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Zadaj datum"
+            android:text="@string/zadaj_datum"
             app:layout_constraintStart_toStartOf="@+id/tv_desc_odc"
             app:layout_constraintTop_toBottomOf="@+id/tv_desc_odc" />
 
@@ -102,7 +102,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Zadaj datum"
+            android:text="@string/zadaj_datum"
             app:layout_constraintStart_toStartOf="@+id/tv_desc_ock"
             app:layout_constraintTop_toBottomOf="@+id/tv_desc_ock" />
 
@@ -134,7 +134,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:text="///"
+            android:text="@string/empty"
             app:layout_constraintBottom_toBottomOf="@+id/pb_odc"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/pb_odc" />
@@ -144,7 +144,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:text="///"
+            android:text="@string/empty"
             app:layout_constraintBottom_toBottomOf="@+id/pb_ock"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/pb_ock" />
@@ -155,7 +155,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="48dp"
-            android:text="Odcervenie"
+            android:text="@string/odcervenie"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/pb_ock" />
 
@@ -166,7 +166,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="16dp"
-            android:text="Vakcinacia"
+            android:text="@string/vakcinacia"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_par" />
