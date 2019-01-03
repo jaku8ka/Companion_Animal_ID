@@ -6,7 +6,6 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,13 +15,13 @@ import android.widget.TextView;
 
 import org.jaku8ka.companion_animal_id.database.TaskEntry;
 
-import java.io.Console;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.StringTokenizer;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
@@ -47,6 +46,25 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public void onBindViewHolder(MyViewHolder holder, int position) {
 
         final TaskEntry taskEntry = mTaskEntries.get(position);
+        HelperClass helper = new HelperClass();
+
+        try{
+            String birth = taskEntry.getDateOfBirth();
+            StringTokenizer tokens = new StringTokenizer(birth, ".");
+            int spinnerValue = taskEntry.getPetType();
+
+            int day = Integer.parseInt(tokens.nextToken().trim());
+            int month = Integer.parseInt(tokens.nextToken().trim());
+            int year = Integer.parseInt(tokens.nextToken().trim());
+
+            String birthNormalAge = helper.getAge(year, month, day);
+            String birthPetAge = helper.getAgePet(Integer.parseInt(birthNormalAge), spinnerValue);
+
+            holder.tvAgeNormal.setText(birthNormalAge);
+            holder.tvAgePet.setText(birthPetAge);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            e.printStackTrace();
+        }
 
         String nameOfPet = taskEntry.getNameOfPet();
         holder.tvName.setText(nameOfPet);
@@ -175,6 +193,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         private TextView tvLastVac;
         private TextView tvNextOdc;
         private TextView tvNextVac;
+        private TextView tvAgeNormal;
+        private TextView tvAgePet;
         private ConstraintLayout constraintLayout;
 
 
@@ -191,6 +211,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             tvLastVac = view.findViewById(R.id.tv_date_vac);
             tvNextOdc = view.findViewById(R.id.tv_date_next_par);
             tvNextVac = view.findViewById(R.id.tv_date_next_vac);
+            tvAgeNormal = view.findViewById(R.id.age_normal);
+            tvAgePet = view.findViewById(R.id.age_pet);
 
             constraintLayout = view.findViewById(R.id.con_layout);
             constraintLayout.setOnClickListener(this);

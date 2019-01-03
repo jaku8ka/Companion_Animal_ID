@@ -56,7 +56,9 @@
 
     <string name="dummy_date">21.12.2012</string>
 
-
+    <string name="age">Vek</string>
+    <string name="pet_age">Zvieraci vek</string>
+    <string name="dummy_age">4</string>
 
     <string name="choose_pet">Vyber druh zvierata.</string>
 
