@@ -59,6 +59,10 @@
     <string name="age">Vek</string>
     <string name="pet_age">Zvieraci vek</string>
     <string name="dummy_age">4</string>
+    <string name="countdown">Odpocet</string>
+
+    <string name="day">den</string>
+    <string name="days">dni</string>
 
     <string name="choose_pet">Vyber druh zvierata.</string>
 

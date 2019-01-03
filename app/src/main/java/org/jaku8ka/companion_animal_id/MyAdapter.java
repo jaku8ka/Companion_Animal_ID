@@ -1,6 +1,11 @@
 package org.jaku8ka.companion_animal_id;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
@@ -11,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import org.jaku8ka.companion_animal_id.database.TaskEntry;
@@ -21,6 +27,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
@@ -64,6 +71,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             holder.tvAgePet.setText(birthPetAge);
         } catch (ArrayIndexOutOfBoundsException e) {
             e.printStackTrace();
+        } catch (NoSuchElementException n) {
+            n.printStackTrace();
         }
 
         String nameOfPet = taskEntry.getNameOfPet();
@@ -92,7 +101,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             }
             dateOdc.setMonth(dateOdc.getMonth() + myMonthValue);
             nextOdc = dateFormat.format(dateOdc);
-            System.out.println(nextOdc);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -153,6 +161,51 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                 break;
         }
 
+        String currentDate = dateFormat.format(new Date());
+
+        if(!(dateOfOdc.isEmpty())) {
+            long odcCount = (helper.getNumberOfDays(dateOfOdc, nextOdc, "dd.MM.yyyy"));
+            long odcDays = (helper.getNumberOfDays(currentDate, nextOdc, "dd.MM.yyyy"));
+            int odcProgress = Math.toIntExact(odcCount - odcDays);
+            holder.pbOdc.setMax(Math.toIntExact(odcCount));
+            String sOdcCount = String.valueOf(odcDays);
+            if(Integer.parseInt(sOdcCount) == 1) {
+                holder.tvOdcCount.setText(sOdcCount +  " den");
+            } else holder.tvOdcCount.setText(sOdcCount + " dni");
+            holder.pbOdc.setProgress(odcProgress, true);
+
+            LayerDrawable layerDrawableOdc = (LayerDrawable) holder.pbOdc.getProgressDrawable();
+            Drawable progressDrawableOdc = layerDrawableOdc.findDrawableByLayerId(android.R.id.progress);
+
+            Float typeOdc = helper.getPbPercent(odcProgress, odcCount);
+            if(typeOdc < 33.0) {
+                progressDrawableOdc.setColorFilter(mContext.getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
+            } else if(typeOdc < 66.0) {
+                progressDrawableOdc.setColorFilter(mContext.getColor(R.color.colorOrange), PorterDuff.Mode.SRC_IN);
+            } else progressDrawableOdc.setColorFilter(mContext.getColor(R.color.colorAccent), PorterDuff.Mode.SRC_IN);
+        }
+
+        if(!(dateOfVac.isEmpty())) {
+            long vacCount = (helper.getNumberOfDays(dateOfVac, nextVac, "dd.MM.yyyy"));
+            long vacDays = (helper.getNumberOfDays(currentDate, nextVac, "dd.MM.yyyy"));
+            int vacProgress = Math.toIntExact(vacCount - vacDays);
+            holder.pbVac.setMax(Math.toIntExact(vacCount));
+            String sVacCount = String.valueOf(vacDays);
+            if(Integer.parseInt(sVacCount) == 1) {
+                holder.tvVacCount.setText(sVacCount+ " den");
+            } else holder.tvVacCount.setText(sVacCount+ " dni");
+            holder.pbVac.setProgress(vacProgress, true);
+
+            LayerDrawable layerDrawableVac = (LayerDrawable) holder.pbVac.getProgressDrawable();
+            Drawable progressDrawableVac = layerDrawableVac.findDrawableByLayerId(android.R.id.progress);
+
+            Float typeOdc = helper.getPbPercent(vacProgress, vacCount);
+            if(typeOdc < 33.0) {
+                progressDrawableVac.setColorFilter(mContext.getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
+            } else if(typeOdc < 66.0) {
+                progressDrawableVac.setColorFilter(mContext.getColor(R.color.colorOrange), PorterDuff.Mode.SRC_IN);
+            } else progressDrawableVac.setColorFilter(mContext.getColor(R.color.colorAccent), PorterDuff.Mode.SRC_IN);
+        }
 
         holder.btnDel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -195,6 +248,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         private TextView tvNextVac;
         private TextView tvAgeNormal;
         private TextView tvAgePet;
+        private ProgressBar pbOdc;
+        private ProgressBar pbVac;
+        private TextView tvOdcCount;
+        private TextView tvVacCount;
         private ConstraintLayout constraintLayout;
 
 
@@ -213,6 +270,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             tvNextVac = view.findViewById(R.id.tv_date_next_vac);
             tvAgeNormal = view.findViewById(R.id.age_normal);
             tvAgePet = view.findViewById(R.id.age_pet);
+            pbOdc = view.findViewById(R.id.pb_odc);
+            pbVac = view.findViewById(R.id.pb_ock);
+            tvOdcCount = view.findViewById(R.id.tv_odc_count);
+            tvVacCount = view.findViewById(R.id.tv_vac_count);
 
             constraintLayout = view.findViewById(R.id.con_layout);
             constraintLayout.setOnClickListener(this);

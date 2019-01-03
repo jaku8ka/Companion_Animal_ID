@@ -45,12 +45,9 @@
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_date_par"
-            app:layout_constraintEnd_toStartOf="@+id/tv_date_next_par"
-            app:layout_constraintStart_toEndOf="@+id/tv_date_par"
-            app:layout_constraintTop_toTopOf="@+id/tv_date_par" />
+            app:layout_constraintEnd_toEndOf="@+id/tv_date_next_par"
+            app:layout_constraintStart_toStartOf="@+id/tv_date_par"
+            app:layout_constraintTop_toBottomOf="@+id/tv_date_par" />
 
         <TextView
             android:id="@+id/tv_desc_odc"
@@ -68,23 +65,19 @@
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_date_vac"
-            app:layout_constraintEnd_toStartOf="@+id/tv_date_next_vac"
-            app:layout_constraintStart_toEndOf="@+id/tv_date_vac"
-            app:layout_constraintTop_toTopOf="@+id/tv_date_vac" />
+            app:layout_constraintEnd_toEndOf="@+id/tv_date_next_vac"
+            app:layout_constraintStart_toStartOf="@+id/tv_date_vac"
+            app:layout_constraintTop_toBottomOf="@+id/tv_date_vac" />
 
         <TextView
             android:id="@+id/tv_desc_ock"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:layout_marginTop="16dp"
             android:text="@string/desc_pb_ock"
             android:textColor="@color/colorPrimary"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_date_par" />
+            app:layout_constraintTop_toBottomOf="@+id/pb_odc" />
 
         <TextView
             android:id="@+id/tv_date_par"
@@ -133,9 +126,9 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:text="@string/empty"
-            app:layout_constraintBottom_toBottomOf="@+id/pb_odc"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_date_par"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/pb_odc" />
+            app:layout_constraintTop_toTopOf="@+id/tv_date_par" />
 
         <TextView
             android:id="@+id/tv_date_next_vac"
@@ -143,9 +136,9 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:text="@string/empty"
-            app:layout_constraintBottom_toBottomOf="@+id/pb_ock"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_date_vac"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/pb_ock" />
+            app:layout_constraintTop_toTopOf="@+id/tv_date_vac" />
 
         <Button
             android:id="@+id/btn_delete"
@@ -163,9 +156,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
+            android:fontFamily="sans-serif"
             android:text="@string/age"
             android:textColor="@color/colorBlack"
-            android:textSize="24sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/tv_date_vac"
             app:layout_constraintTop_toBottomOf="@+id/tv_date_vac" />
@@ -175,8 +169,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="@string/dummy_age"
-            android:textSize="24sp"
+            android:text="@string/empty"
+            android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/textView3"
             app:layout_constraintStart_toEndOf="@+id/textView3"
@@ -187,10 +181,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
             android:text="@string/pet_age"
             android:textColor="@color/colorBlack"
-            android:textSize="24sp"
+            android:textSize="18sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/textView3"
             app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
@@ -199,12 +195,32 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="@string/dummy_age"
-            android:textSize="24sp"
+            android:text="@string/empty"
+            android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/textView4"
             app:layout_constraintStart_toEndOf="@+id/textView4"
             app:layout_constraintTop_toTopOf="@+id/textView4" />
+
+        <TextView
+            android:id="@+id/tv_odc_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/countdown"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toTopOf="@+id/pb_odc"
+            app:layout_constraintEnd_toEndOf="@+id/pb_odc"
+            app:layout_constraintStart_toStartOf="@+id/pb_odc" />
+
+        <TextView
+            android:id="@+id/tv_vac_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/countdown"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toTopOf="@+id/pb_ock"
+            app:layout_constraintEnd_toEndOf="@+id/pb_ock"
+            app:layout_constraintStart_toStartOf="@+id/pb_ock" />
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

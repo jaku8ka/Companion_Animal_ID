@@ -1,6 +1,9 @@
 package org.jaku8ka.companion_animal_id;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class HelperClass {
 
@@ -23,6 +26,25 @@ public class HelperClass {
         String ageS = ageInt.toString();
 
         return ageS;
+    }
+
+    public long getNumberOfDays(String date1,String date2,String pattern)
+    {
+        SimpleDateFormat sdf = new SimpleDateFormat(pattern, Locale.getDefault());
+        Date Date1 = null,Date2 = null;
+        try{
+            Date1 = sdf.parse(date1);
+            Date2 = sdf.parse(date2);
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return (Date2.getTime() - Date1.getTime())/(24*60*60*1000);
+    }
+
+    public float getPbPercent(int currentDays, long daysToEnd) {
+
+        return (currentDays * 100 / daysToEnd);
     }
 
     public String getAgePet(int years, int spinnerValue) {

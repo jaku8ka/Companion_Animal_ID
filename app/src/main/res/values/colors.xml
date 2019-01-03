@@ -12,4 +12,8 @@
 
     <color name="colorBlack">#000000</color>
 
+    <color name="colorGreen">#71d668</color>
+    <color name="colorOrange">#fcae31</color>
+    <color name="colorRed">#ff1313</color>
+
 </resources>
