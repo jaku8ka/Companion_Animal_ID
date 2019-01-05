@@ -1,10 +1,11 @@
-package org.jaku8ka.companion_animal_id;
+package org.jaku8ka.companionAnimal;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.Observer;
 import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,8 +20,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.jaku8ka.companion_animal_id.database.AppDatabase;
-import org.jaku8ka.companion_animal_id.database.TaskEntry;
+import org.jaku8ka.companionAnimal.database.AppDatabase;
+import org.jaku8ka.companionAnimal.database.TaskEntry;
 
 public class AddPetActivity extends AppCompatActivity {
 
@@ -244,11 +245,10 @@ public class AddPetActivity extends AppCompatActivity {
                         mDb.taskDao().updateTask(task);
                     }
                     finish();
+
                 }
             });
-
         }
-
     }
 
     @Override

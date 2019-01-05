@@ -1,10 +1,11 @@
-package org.jaku8ka.companion_animal_id;
+package org.jaku8ka.companionAnimal;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.Observer;
 import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,9 +17,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import org.jaku8ka.companion_animal_id.database.AppDatabase;
-import org.jaku8ka.companion_animal_id.database.TaskEntry;
+import org.jaku8ka.companionAnimal.database.AppDatabase;
+import org.jaku8ka.companionAnimal.database.TaskEntry;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -66,6 +68,7 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.ItemCli
 
         retrievePets();
 
+        NotificationScheduler.createNotificationChannel(this);
     }
 
     private void retrievePets() {

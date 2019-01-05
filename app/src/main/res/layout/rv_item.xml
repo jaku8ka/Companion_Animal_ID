@@ -10,8 +10,7 @@
         android:id="@+id/con_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/rouned_corners"
-        android:padding="8dp">
+        android:background="@drawable/rouned_corners">
 
         <ImageView
             android:id="@+id/iv_pet"
@@ -53,7 +52,7 @@
             android:id="@+id/tv_desc_odc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            android:layout_margin="8dp"
             android:layout_marginTop="16dp"
             android:text="@string/desc_pb_odc"
             android:textColor="@color/colorPrimary"
@@ -73,11 +72,11 @@
             android:id="@+id/tv_desc_ock"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            android:layout_marginTop="24dp"
             android:text="@string/desc_pb_ock"
             android:textColor="@color/colorPrimary"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/pb_odc" />
+            app:layout_constraintStart_toStartOf="@+id/pb_odc"
+            app:layout_constraintTop_toBottomOf="@+id/tv_odc_count" />
 
         <TextView
             android:id="@+id/tv_date_par"
@@ -152,15 +151,17 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
+            android:layout_marginBottom="32dp"
             android:fontFamily="sans-serif"
             android:text="@string/age"
             android:textColor="@color/colorBlack"
             android:textSize="18sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tv_date_vac"
             app:layout_constraintTop_toBottomOf="@+id/tv_date_vac" />
 
@@ -170,25 +171,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="@string/empty"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/textView3"
-            app:layout_constraintStart_toEndOf="@+id/textView3"
-            app:layout_constraintTop_toTopOf="@+id/textView3" />
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="16dp"
-            android:text="@string/pet_age"
             android:textColor="@color/colorBlack"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/textView3"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+            app:layout_constraintBottom_toBottomOf="@+id/textView"
+            app:layout_constraintStart_toEndOf="@+id/textView"
+            app:layout_constraintTop_toTopOf="@+id/textView" />
 
         <TextView
             android:id="@+id/age_pet"
@@ -198,16 +186,16 @@
             android:text="@string/empty"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/textView4"
-            app:layout_constraintStart_toEndOf="@+id/textView4"
-            app:layout_constraintTop_toTopOf="@+id/textView4" />
+            app:layout_constraintBottom_toBottomOf="@+id/age_normal"
+            app:layout_constraintStart_toEndOf="@+id/age_normal"
+            app:layout_constraintTop_toTopOf="@+id/age_normal" />
 
         <TextView
             android:id="@+id/tv_odc_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/countdown"
-            android:textSize="10sp"
+            android:textSize="12sp"
             app:layout_constraintBottom_toTopOf="@+id/pb_odc"
             app:layout_constraintEnd_toEndOf="@+id/pb_odc"
             app:layout_constraintStart_toStartOf="@+id/pb_odc" />
@@ -217,7 +205,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/countdown"
-            android:textSize="10sp"
+            android:textSize="12sp"
             app:layout_constraintBottom_toTopOf="@+id/pb_ock"
             app:layout_constraintEnd_toEndOf="@+id/pb_ock"
             app:layout_constraintStart_toStartOf="@+id/pb_ock" />

@@ -1,4 +1,4 @@
-package org.jaku8ka.companion_animal_id;
+package org.jaku8ka.companionAnimal;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

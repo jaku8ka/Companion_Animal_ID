@@ -11,7 +11,8 @@
         android:id="@+id/my_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="16dp" />
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="3dp" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_btn"

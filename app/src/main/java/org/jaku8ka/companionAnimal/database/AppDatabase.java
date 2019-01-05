@@ -1,4 +1,4 @@
-package org.jaku8ka.companion_animal_id.database;
+package org.jaku8ka.companionAnimal.database;
 
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;

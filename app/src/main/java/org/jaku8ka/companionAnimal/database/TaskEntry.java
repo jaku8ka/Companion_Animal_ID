@@ -1,13 +1,8 @@
-package org.jaku8ka.companion_animal_id.database;
+package org.jaku8ka.companionAnimal.database;
 
 import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
-
-import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
 
 @Entity(tableName = "pet")
 public class TaskEntry {

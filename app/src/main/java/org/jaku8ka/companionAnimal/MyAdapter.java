@@ -1,8 +1,6 @@
-package org.jaku8ka.companion_animal_id;
+package org.jaku8ka.companionAnimal;
 
 import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
@@ -19,21 +17,27 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import org.jaku8ka.companion_animal_id.database.TaskEntry;
+import org.jaku8ka.companionAnimal.database.TaskEntry;
 
+import java.lang.reflect.Array;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.NoSuchElementException;
+import java.util.Set;
 import java.util.StringTokenizer;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     final private ItemClickListener mOnClickListener;
     private List<TaskEntry> mTaskEntries;
+    private ArrayList<Long> mDate = new ArrayList<>();
 
     private Context mContext;
 
@@ -55,7 +59,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         final TaskEntry taskEntry = mTaskEntries.get(position);
         HelperClass helper = new HelperClass();
 
-        try{
+        try {
             String birth = taskEntry.getDateOfBirth();
             StringTokenizer tokens = new StringTokenizer(birth, ".");
             int spinnerValue = taskEntry.getPetType();
@@ -67,8 +71,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             String birthNormalAge = helper.getAge(year, month, day);
             String birthPetAge = helper.getAgePet(Integer.parseInt(birthNormalAge), spinnerValue);
 
-            holder.tvAgeNormal.setText(birthNormalAge);
-            holder.tvAgePet.setText(birthPetAge);
+            holder.tvAgeNormal.setText(birthNormalAge + "r.");
+            holder.tvAgePet.setText("(" + birthPetAge + "r.)");
         } catch (ArrayIndexOutOfBoundsException e) {
             e.printStackTrace();
         } catch (NoSuchElementException n) {
@@ -80,10 +84,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         String dateOfOdc = taskEntry.getDateOfOdc();
         DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
-
+        Date dateOdc = null;
         String nextOdc = null;
         try {
-            Date dateOdc = dateFormat.parse(dateOfOdc);
+            dateOdc = dateFormat.parse(dateOfOdc);
             int monthValue = taskEntry.getNextOdc();
             int myMonthValue;
             switch (monthValue) {
@@ -96,8 +100,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                 case 2:
                     myMonthValue = 6;
                     break;
-                    default:
-                        myMonthValue = 0;
+                default:
+                    myMonthValue = 0;
             }
             dateOdc.setMonth(dateOdc.getMonth() + myMonthValue);
             nextOdc = dateFormat.format(dateOdc);
@@ -114,10 +118,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         }
 
         String dateOfVac = taskEntry.getDateOfVac();
-
+        Date dateVac = null;
         String nextVac = null;
         try {
-            Date dateVac = dateFormat.parse(dateOfVac);
+            dateVac = dateFormat.parse(dateOfVac);
             int monthValue = taskEntry.getNextVac();
             int myMonthValue;
             switch (monthValue) {
@@ -163,14 +167,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         String currentDate = dateFormat.format(new Date());
 
-        if(!(dateOfOdc.isEmpty())) {
+        if (!(dateOfOdc.isEmpty())) {
             long odcCount = (helper.getNumberOfDays(dateOfOdc, nextOdc, "dd.MM.yyyy"));
             long odcDays = (helper.getNumberOfDays(currentDate, nextOdc, "dd.MM.yyyy"));
             int odcProgress = Math.toIntExact(odcCount - odcDays);
             holder.pbOdc.setMax(Math.toIntExact(odcCount));
             String sOdcCount = String.valueOf(odcDays);
-            if(Integer.parseInt(sOdcCount) == 1) {
-                holder.tvOdcCount.setText(sOdcCount +  " den");
+            if (Integer.parseInt(sOdcCount) == 1) {
+                holder.tvOdcCount.setText(sOdcCount + " den");
             } else holder.tvOdcCount.setText(sOdcCount + " dni");
             holder.pbOdc.setProgress(odcProgress, true);
 
@@ -178,33 +182,41 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             Drawable progressDrawableOdc = layerDrawableOdc.findDrawableByLayerId(android.R.id.progress);
 
             Float typeOdc = helper.getPbPercent(odcProgress, odcCount);
-            if(typeOdc < 33.0) {
+            if (typeOdc < 33.0) {
                 progressDrawableOdc.setColorFilter(mContext.getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
-            } else if(typeOdc < 66.0) {
+            } else if (typeOdc < 66.0) {
                 progressDrawableOdc.setColorFilter(mContext.getColor(R.color.colorOrange), PorterDuff.Mode.SRC_IN);
-            } else progressDrawableOdc.setColorFilter(mContext.getColor(R.color.colorAccent), PorterDuff.Mode.SRC_IN);
+            } else
+                progressDrawableOdc.setColorFilter(mContext.getColor(R.color.colorAccent), PorterDuff.Mode.SRC_IN);
+        } else {
+            holder.tvOdcCount.setText(R.string.countdown);
+            holder.pbOdc.setProgress(0);
         }
 
-        if(!(dateOfVac.isEmpty())) {
+        if (!(dateOfVac.isEmpty())) {
             long vacCount = (helper.getNumberOfDays(dateOfVac, nextVac, "dd.MM.yyyy"));
             long vacDays = (helper.getNumberOfDays(currentDate, nextVac, "dd.MM.yyyy"));
             int vacProgress = Math.toIntExact(vacCount - vacDays);
             holder.pbVac.setMax(Math.toIntExact(vacCount));
             String sVacCount = String.valueOf(vacDays);
-            if(Integer.parseInt(sVacCount) == 1) {
-                holder.tvVacCount.setText(sVacCount+ " den");
-            } else holder.tvVacCount.setText(sVacCount+ " dni");
+            if (Integer.parseInt(sVacCount) == 1) {
+                holder.tvVacCount.setText(sVacCount + " den");
+            } else holder.tvVacCount.setText(sVacCount + " dni");
             holder.pbVac.setProgress(vacProgress, true);
 
             LayerDrawable layerDrawableVac = (LayerDrawable) holder.pbVac.getProgressDrawable();
             Drawable progressDrawableVac = layerDrawableVac.findDrawableByLayerId(android.R.id.progress);
 
             Float typeOdc = helper.getPbPercent(vacProgress, vacCount);
-            if(typeOdc < 33.0) {
+            if (typeOdc < 33.0) {
                 progressDrawableVac.setColorFilter(mContext.getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
-            } else if(typeOdc < 66.0) {
+            } else if (typeOdc < 66.0) {
                 progressDrawableVac.setColorFilter(mContext.getColor(R.color.colorOrange), PorterDuff.Mode.SRC_IN);
-            } else progressDrawableVac.setColorFilter(mContext.getColor(R.color.colorAccent), PorterDuff.Mode.SRC_IN);
+            } else
+                progressDrawableVac.setColorFilter(mContext.getColor(R.color.colorAccent), PorterDuff.Mode.SRC_IN);
+        } else {
+            holder.tvVacCount.setText(R.string.countdown);
+            holder.pbVac.setProgress(0);
         }
 
         holder.btnDel.setOnClickListener(new View.OnClickListener() {
@@ -214,6 +226,36 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                 dialogFragment.show(((FragmentActivity) mContext).getSupportFragmentManager(), "Delete");
             }
         });
+
+        Calendar calendar = Calendar.getInstance();
+        long todayDate = calendar.getTimeInMillis();
+
+        try {
+            if (todayDate <= dateOdc.getTime())
+                mDate.add(dateOdc.getTime());
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            if (todayDate <= dateVac.getTime())
+                mDate.add(dateVac.getTime());
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            int minIndex = mDate.indexOf(Collections.min(mDate));
+            long finalDate = mDate.get(minIndex);
+
+            if (todayDate <= finalDate) {
+                NotificationScheduler.scheduleNotification(mContext, finalDate + 3600*8000);
+            }
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        } catch (NoSuchElementException nsee) {
+            nsee.printStackTrace();
+        }
     }
 
     @Override
@@ -259,11 +301,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             super(view);
 
             tvName = view.findViewById(R.id.tv_name);
-
             ivPet = view.findViewById(R.id.iv_pet);
-
             btnDel = view.findViewById(R.id.btn_delete);
-
             tvLastOdc = view.findViewById(R.id.tv_date_par);
             tvLastVac = view.findViewById(R.id.tv_date_vac);
             tvNextOdc = view.findViewById(R.id.tv_date_next_par);

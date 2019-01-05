@@ -1,4 +1,4 @@
-package org.jaku8ka.companion_animal_id;
+package org.jaku8ka.companionAnimal;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -8,8 +8,8 @@ import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.widget.Toast;
 
-import org.jaku8ka.companion_animal_id.database.AppDatabase;
-import org.jaku8ka.companion_animal_id.database.TaskEntry;
+import org.jaku8ka.companionAnimal.database.AppDatabase;
+import org.jaku8ka.companionAnimal.database.TaskEntry;
 
 public class AlertDialogFragment extends DialogFragment {
 
