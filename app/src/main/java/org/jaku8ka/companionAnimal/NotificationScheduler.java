@@ -29,15 +29,15 @@ public class NotificationScheduler extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        //TODO intent getextrastring
+
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         Intent newIntent = new Intent(context, MainActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, newIntent, 0);
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_cat)
-                .setContentTitle("Utekaj k veterinarovi!") //TODO nahod meno
-                .setContentText("Tvoje zviera treba ta potrebuje.")
+                .setContentTitle("Tvoje zviera")
+                .setContentText("Potrebuje vakcinu alebo odcervit.")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true);
@@ -48,7 +48,6 @@ public class NotificationScheduler extends BroadcastReceiver {
 
     public static void scheduleNotification(Context context, Long time)
     {
-        //TODO sem nahod meno
         Intent intentAlarm = new Intent(context, NotificationScheduler.class);
 
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);

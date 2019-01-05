@@ -38,6 +38,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     final private ItemClickListener mOnClickListener;
     private List<TaskEntry> mTaskEntries;
     private ArrayList<Long> mDate = new ArrayList<>();
+    private ArrayList<String> mName = new ArrayList<>();
 
     private Context mContext;
 
@@ -231,15 +232,17 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         long todayDate = calendar.getTimeInMillis();
 
         try {
-            if (todayDate <= dateOdc.getTime())
+            if (todayDate <= dateOdc.getTime()){
                 mDate.add(dateOdc.getTime());
+            }
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
 
         try {
-            if (todayDate <= dateVac.getTime())
+            if (todayDate <= dateVac.getTime()) {
                 mDate.add(dateVac.getTime());
+            }
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
@@ -253,8 +256,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             }
         } catch (NullPointerException e) {
             e.printStackTrace();
-        } catch (NoSuchElementException nsee) {
-            nsee.printStackTrace();
+        } catch (NoSuchElementException e) {
+            e.printStackTrace();
         }
     }
 

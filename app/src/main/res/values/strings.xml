@@ -2,6 +2,11 @@
     <string name="app_name">Companion Animal</string>
     <string name="app_main">Moje zvierata</string>
     <string name="app_add">Udaje o zvierati</string>
+    <string name="app_info">Dolezite informacie</string>
+
+    <string name="cat">Macka</string>
+    <string name="dog">Pes</string>
+    <string name="rabbit">Zajac</string>
 
     <!-- Content description -->
     <string name="cd_pet_image">Pet Image</string>
@@ -97,6 +102,10 @@
     <string name="odcervenie">Odcervenie</string>
     <string name="vakcinacia">Vakcinacia</string>
     <string name="notif_name">Upozornenia</string>
+
+    <string name="cat_info">Cat</string>
+    <string name="dog_info">Dog</string>
+    <string name="rabbit_info">Rabbit</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

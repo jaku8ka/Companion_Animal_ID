@@ -3,7 +3,6 @@ package org.jaku8ka.companionAnimal;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.Observer;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 
@@ -21,7 +20,6 @@ import android.widget.LinearLayout;
 import org.jaku8ka.companionAnimal.database.AppDatabase;
 import org.jaku8ka.companionAnimal.database.TaskEntry;
 
-import java.util.Date;
 import java.util.List;
 
 
@@ -111,6 +109,8 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.ItemCli
 
         switch (item.getItemId()) {
             case R.id.action_info:
+                Intent intent = new Intent(this, SlidePagerInfoActivity.class);
+                startActivity(intent);
                 return true;
 
             default:
