@@ -258,7 +258,7 @@ public class AddPetActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        MenuItem menuItem = menu.findItem(R.id.action_setting);
+        MenuItem menuItem = menu.findItem(R.id.action_info);
         menuItem.setVisible(false);
 
         return true;

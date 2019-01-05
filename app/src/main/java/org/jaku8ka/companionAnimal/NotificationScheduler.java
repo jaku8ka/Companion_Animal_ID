@@ -31,10 +31,11 @@ public class NotificationScheduler extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         //TODO intent getextrastring
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+        Intent newIntent = new Intent(context, MainActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, newIntent, 0);
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_alarm_black_24dp)
+                .setSmallIcon(R.drawable.ic_cat)
                 .setContentTitle("Utekaj k veterinarovi!") //TODO nahod meno
                 .setContentText("Tvoje zviera treba ta potrebuje.")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
@@ -42,7 +43,7 @@ public class NotificationScheduler extends BroadcastReceiver {
                 .setAutoCancel(true);
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
-        notificationManager.notify(0, mBuilder.build());  //TODO skusit dat random number
+        notificationManager.notify(0, mBuilder.build());
     }
 
     public static void scheduleNotification(Context context, Long time)

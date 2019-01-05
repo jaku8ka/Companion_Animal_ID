@@ -3,6 +3,7 @@ package org.jaku8ka.companionAnimal;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.Observer;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.ItemCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         mRecyclerView = findViewById(R.id.my_recycler_view);
 
@@ -108,7 +110,7 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.ItemCli
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()) {
-            case R.id.action_setting:
+            case R.id.action_info:
                 return true;
 
             default:

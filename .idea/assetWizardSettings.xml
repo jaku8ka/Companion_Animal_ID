@@ -41,11 +41,35 @@
                                 </PersistentState>
                               </value>
                             </entry>
-                          </map>
-                        </option>
-                        <option name="values">
-                          <map>
-                            <entry key="outputIconType" value="ACTIONBAR" />
+                            <entry key="launcher">
+                              <value>
+                                <PersistentState>
+                                  <option name="children">
+                                    <map>
+                                      <entry key="foregroundImage">
+                                        <value>
+                                          <PersistentState>
+                                            <option name="values">
+                                              <map>
+                                                <entry key="scalingPercent" value="51" />
+                                              </map>
+                                            </option>
+                                          </PersistentState>
+                                        </value>
+                                      </entry>
+                                    </map>
+                                  </option>
+                                  <option name="values">
+                                    <map>
+                                      <entry key="backgroundAssetType" value="COLOR" />
+                                      <entry key="backgroundColor" value="f9ca7e" />
+                                      <entry key="foregroundImage" value="C:\Users\jaku8\Desktop\Project - res\cat_logo2.svg" />
+                                      <entry key="outputName" value="ic_launcher_my" />
+                                    </map>
+                                  </option>
+                                </PersistentState>
+                              </value>
+                            </entry>
                           </map>
                         </option>
                       </PersistentState>
@@ -81,10 +105,11 @@
                         </option>
                         <option name="values">
                           <map>
+                            <entry key="assetSourceType" value="FILE" />
                             <entry key="autoMirrored" value="true" />
-                            <entry key="outputName" value="ic_alarm_black_24dp" />
+                            <entry key="outputName" value="ic_outline_info_24px" />
                             <entry key="overrideSize" value="true" />
-                            <entry key="sourceFile" value="C:\Users\jaku8\Desktop\Project - res\plus.svg" />
+                            <entry key="sourceFile" value="C:\Users\jaku8\Desktop\Project - res\outline-info-24px.svg" />
                           </map>
                         </option>
                       </PersistentState>

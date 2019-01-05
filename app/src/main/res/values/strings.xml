@@ -10,7 +10,7 @@
     <!-- Add pet layout -->
     <string name="action_save">Ulozit</string>
     <string name="action_nothing">Storno</string>
-    <string name="action_setting">Nastavenia</string>
+    <string name="action_info">Informacie</string>
 
     <string name="pet_description">Popis zvierata</string>
     <string name="name_of_owner">Majitel</string>
