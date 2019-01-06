@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
-import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
@@ -14,12 +13,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import org.jaku8ka.companionAnimal.database.TaskEntry;
 
-import java.lang.reflect.Array;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -30,7 +29,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.NoSuchElementException;
-import java.util.Set;
 import java.util.StringTokenizer;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
@@ -234,6 +232,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         try {
             if (todayDate <= dateOdc.getTime()){
                 mDate.add(dateOdc.getTime());
+                mName.add(nameOfPet);
             }
         } catch (NullPointerException e) {
             e.printStackTrace();
@@ -242,6 +241,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         try {
             if (todayDate <= dateVac.getTime()) {
                 mDate.add(dateVac.getTime());
+                mName.add(nameOfPet);
             }
         } catch (NullPointerException e) {
             e.printStackTrace();
@@ -250,9 +250,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         try {
             int minIndex = mDate.indexOf(Collections.min(mDate));
             long finalDate = mDate.get(minIndex);
+            String name = mName.get(minIndex);
 
             if (todayDate <= finalDate) {
-                NotificationScheduler.scheduleNotification(mContext, finalDate + 3600*8000);
+                NotificationScheduler.scheduleNotification(mContext, finalDate + 3600*8000, name);
             }
         } catch (NullPointerException e) {
             e.printStackTrace();
@@ -297,7 +298,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         private ProgressBar pbVac;
         private TextView tvOdcCount;
         private TextView tvVacCount;
-        private ConstraintLayout constraintLayout;
+        private LinearLayout linearLayout;
 
 
         private MyViewHolder(View view) {
@@ -317,8 +318,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             tvOdcCount = view.findViewById(R.id.tv_odc_count);
             tvVacCount = view.findViewById(R.id.tv_vac_count);
 
-            constraintLayout = view.findViewById(R.id.con_layout);
-            constraintLayout.setOnClickListener(this);
+            linearLayout = view.findViewById(R.id.linear_layout);
+            linearLayout.setOnClickListener(this);
         }
 
         @Override

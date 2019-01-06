@@ -36,7 +36,7 @@ public class NotificationScheduler extends BroadcastReceiver {
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_cat)
-                .setContentTitle("Tvoje zviera")
+                .setContentTitle("Tvoje zviera " + intent.getStringExtra("nameOfPet"))
                 .setContentText("Potrebuje vakcinu alebo odcervit.")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setContentIntent(pendingIntent)
@@ -46,9 +46,10 @@ public class NotificationScheduler extends BroadcastReceiver {
         notificationManager.notify(0, mBuilder.build());
     }
 
-    public static void scheduleNotification(Context context, Long time)
+    public static void scheduleNotification(Context context, Long time, String name)
     {
         Intent intentAlarm = new Intent(context, NotificationScheduler.class);
+        intentAlarm.putExtra("nameOfPet", name);
 
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 

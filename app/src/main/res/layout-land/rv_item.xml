@@ -6,209 +6,243 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/con_layout"
+    <LinearLayout
+        android:id="@+id/linear_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/rouned_corners">
+        android:background="@drawable/rouned_corners"
+        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/iv_pet"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/ic_android_black_24dp"
-            android:contentDescription="@string/cd_pet_image"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tv_name"
-            android:layout_width="wrap_content"
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/iv_pet"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="top|start"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/ic_android_black_24dp"
+                android:contentDescription="@string/cd_pet_image" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="32dp"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/iv_pet"
+                    app:layout_constraintTop_toBottomOf="@+id/iv_pet"
+                    tools:text="@string/name_of_pet" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="sans-serif"
+                        android:text="@string/age"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/age_normal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/empty"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/age_pet"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/empty"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_delete"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|end"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/ic_clear_black_24dp"
+                android:backgroundTint="@color/colorAccent" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="32dp"
             android:layout_marginTop="8dp"
-            android:textColor="@color/colorBlack"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/iv_pet"
-            app:layout_constraintTop_toTopOf="@+id/iv_pet"
-            tools:text="@string/name_of_pet" />
+            android:orientation="horizontal">
 
+            <TextView
+                android:id="@+id/tv_desc_odc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:text="@string/desc_pb_odc"
+                android:textColor="@color/colorPrimary" />
+
+            <TextView
+                android:id="@+id/tv_next_par"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:text="@string/next_odc"
+                android:textColor="@color/colorAccent" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_date_par"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:text="@string/zadaj_datum" />
+
+            <TextView
+                android:id="@+id/tv_odc_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/countdown"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_date_next_par"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:text="@string/empty" />
+
+
+        </LinearLayout>
 
         <ProgressBar
             android:id="@+id/pb_odc"
             style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="@+id/tv_date_next_par"
-            app:layout_constraintStart_toStartOf="@+id/tv_date_par"
-            app:layout_constraintTop_toBottomOf="@+id/tv_date_par" />
-
-        <TextView
-            android:id="@+id/tv_desc_odc"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="@string/desc_pb_odc"
-            android:textColor="@color/colorPrimary"
-            app:layout_constraintStart_toStartOf="@+id/iv_pet"
-            app:layout_constraintTop_toBottomOf="@+id/iv_pet" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_desc_ock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:text="@string/desc_pb_ock"
+                android:textColor="@color/colorPrimary" />
+
+            <TextView
+                android:id="@+id/tv_next_vac"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:text="@string/next_ock"
+                android:textColor="@color/colorAccent" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_date_vac"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:text="@string/zadaj_datum" />
+
+            <TextView
+                android:id="@+id/tv_vac_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/countdown"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_date_next_vac"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:text="@string/empty" />
+
+        </LinearLayout>
 
         <ProgressBar
             android:id="@+id/pb_ock"
             style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/tv_date_next_vac"
-            app:layout_constraintStart_toStartOf="@+id/tv_date_vac"
-            app:layout_constraintTop_toBottomOf="@+id/tv_date_vac" />
-
-        <TextView
-            android:id="@+id/tv_desc_ock"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="@string/desc_pb_ock"
-            android:textColor="@color/colorPrimary"
-            app:layout_constraintStart_toStartOf="@+id/pb_odc"
-            app:layout_constraintTop_toBottomOf="@+id/tv_odc_count" />
-
-        <TextView
-            android:id="@+id/tv_date_par"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/zadaj_datum"
-            app:layout_constraintStart_toStartOf="@+id/tv_desc_odc"
-            app:layout_constraintTop_toBottomOf="@+id/tv_desc_odc" />
-
-        <TextView
-            android:id="@+id/tv_date_vac"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/zadaj_datum"
-            app:layout_constraintStart_toStartOf="@+id/tv_desc_ock"
-            app:layout_constraintTop_toBottomOf="@+id/tv_desc_ock" />
-
-        <TextView
-            android:id="@+id/tv_next_par"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:text="@string/next_odc"
-            android:textColor="@color/colorAccent"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_desc_odc"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tv_desc_odc"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
-            android:id="@+id/tv_next_vac"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:text="@string/next_ock"
-            android:textColor="@color/colorAccent"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_desc_ock"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tv_desc_ock" />
-
-        <TextView
-            android:id="@+id/tv_date_next_par"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:text="@string/empty"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_date_par"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tv_date_par" />
-
-        <TextView
-            android:id="@+id/tv_date_next_vac"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:text="@string/empty"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_date_vac"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tv_date_vac" />
-
-        <Button
-            android:id="@+id/btn_delete"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/ic_clear_black_24dp"
-            android:backgroundTint="@color/colorAccent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:fontFamily="sans-serif"
-            android:text="@string/age"
-            android:textColor="@color/colorBlack"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/tv_name"
-            app:layout_constraintTop_toBottomOf="@+id/tv_name" />
-
-        <TextView
-            android:id="@+id/age_normal"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="@string/empty"
-            android:textColor="@color/colorBlack"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/textView"
-            app:layout_constraintStart_toEndOf="@+id/textView"
-            app:layout_constraintTop_toTopOf="@+id/textView" />
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="4dp" />
 
-        <TextView
-            android:id="@+id/age_pet"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="@string/empty"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/age_normal"
-            app:layout_constraintStart_toEndOf="@+id/age_normal"
-            app:layout_constraintTop_toTopOf="@+id/age_normal" />
-
-        <TextView
-            android:id="@+id/tv_odc_count"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/countdown"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toTopOf="@+id/pb_odc"
-            app:layout_constraintEnd_toEndOf="@+id/pb_odc"
-            app:layout_constraintStart_toStartOf="@+id/pb_odc" />
-
-        <TextView
-            android:id="@+id/tv_vac_count"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/countdown"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toTopOf="@+id/pb_ock"
-            app:layout_constraintEnd_toEndOf="@+id/pb_ock"
-            app:layout_constraintStart_toStartOf="@+id/pb_ock" />
-
-    </android.support.constraint.ConstraintLayout>
+    </LinearLayout>
 </ScrollView>
