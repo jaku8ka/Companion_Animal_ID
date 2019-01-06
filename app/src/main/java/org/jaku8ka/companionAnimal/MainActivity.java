@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.ItemCli
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle(R.string.app_main);
         setContentView(R.layout.activity_main);
 
 

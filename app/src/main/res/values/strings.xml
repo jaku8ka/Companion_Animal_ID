@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Companion Animal</string>
+    <string name="app_name">Pet Companion</string>
     <string name="app_main">Moje zvieratá</string>
     <string name="app_add">Údaje o zvierati</string>
     <string name="app_info">Dôležité informácie</string>
