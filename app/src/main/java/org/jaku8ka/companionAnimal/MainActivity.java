@@ -52,7 +52,6 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.ItemCli
         mAdapter = new MyAdapter(this, this);
         mRecyclerView.setAdapter(mAdapter);
 
-
         SnapHelper snapHelper = new PagerSnapHelper();
         snapHelper.attachToRecyclerView(mRecyclerView);
 
@@ -103,6 +102,8 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.ItemCli
 
         return true;
     }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

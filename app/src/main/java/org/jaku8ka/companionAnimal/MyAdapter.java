@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
+
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
@@ -56,7 +57,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public void onBindViewHolder(MyViewHolder holder, int position) {
 
         final TaskEntry taskEntry = mTaskEntries.get(position);
-        HelperClass helper = new HelperClass();
+        final HelperClass helper = new HelperClass();
 
         try {
             String birth = taskEntry.getDateOfBirth();
@@ -328,5 +329,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             int clickedPosition = mTaskEntries.get(getAdapterPosition()).getId();
             mOnClickListener.onItemClickListener(clickedPosition);
         }
+
+
     }
+
 }

@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">Companion Animal</string>
-    <string name="app_main">Moje zvierata</string>
-    <string name="app_add">Udaje o zvierati</string>
-    <string name="app_info">Dolezite informacie</string>
+    <string name="app_main">Moje zvieratá</string>
+    <string name="app_add">Údaje o zvierati</string>
+    <string name="app_info">Dôležité informácie</string>
 
-    <string name="cat">Macka</string>
+    <string name="cat">Mačka</string>
     <string name="dog">Pes</string>
     <string name="rabbit">Zajac</string>
 
@@ -13,66 +13,66 @@
     <string name="cd_pet_warning">Pet Warning</string>
 
     <!-- Add pet layout -->
-    <string name="action_save">Ulozit</string>
+    <string name="action_save">Uložiť</string>
     <string name="action_nothing">Storno</string>
-    <string name="action_info">Informacie</string>
+    <string name="action_info">Informácie</string>
 
-    <string name="pet_description">Popis zvierata</string>
-    <string name="name_of_owner">Majitel</string>
+    <string name="pet_description">Popis zvieraťa</string>
+    <string name="name_of_owner">Majiteľ</string>
 
-    <string name="choose_spinner">Vybrat</string>
-    <string name="choose_date">Vybrat datum</string>
+    <string name="choose_spinner">Vybrať</string>
+    <string name="choose_date">Vybrať dátum</string>
     <string name="edit_species">Zadaj druh</string>
     <string name="edit_color">Zadaj farbu</string>
 
-    <string name="date_par">Odcervenie</string>
-    <string name="date_vac">Ockovanie</string>
+    <string name="date_par">Odčervenie</string>
+    <string name="date_vac">Očkovanie</string>
 
     <string name="name_of_pet">Meno</string>
-    <string name="edit_name_of_pet">Zadaj meno zvierata</string>
-    <string name="date_of_birth">Datum narodenia</string>
+    <string name="edit_name_of_pet">Zadaj meno zvieraťa</string>
+    <string name="date_of_birth">Dátum narodenia</string>
 
-    <string name="date_of_odc">Datum odcervenia</string>
-    <string name="date_of_vac">Datum vakcinacie</string>
+    <string name="date_of_odc">Dátum odčervenia</string>
+    <string name="date_of_vac">Dátum vakcinácie</string>
 
-    <string name="loop_odc">Odcervit o</string>
-    <string name="loop_vac">Vakcinovat o</string>
+    <string name="loop_odc">Odčerviť o</string>
+    <string name="loop_vac">Vakcinovať o</string>
 
     <string name="sex">Pohlavie</string>
     <string name="species">Plemeno</string>
-    <string name="pet_type">Druh zvierata</string>
+    <string name="pet_type">Druh zvieraťa</string>
     <string name="color_of_pet">Farba</string>
     <string name="type_of_fur">Druh srsti</string>
-    <string name="differences">Zvlastne znamenia</string>
-    <string name="date_of_chip">Datum cipovania</string>
-    <string name="chip_number">Cislo cipu</string>
+    <string name="differences">Zvláštne znamenia</string>
+    <string name="date_of_chip">Dátum čipovania</string>
+    <string name="chip_number">Číslo čipu</string>
 
-    <string name="btn_pet_add">Pridat</string>
-    <string name="btn_pet_upd">Upravit</string>
+    <string name="btn_pet_add">Pridať</string>
+    <string name="btn_pet_upd">Upraviť</string>
 
-    <string name="dialog_text">Databaza je prazdna, pridajte nove zviera, mazanie sa uskutocnuje potiahnutim dolava alebo doprava.</string>
+    <string name="dialog_text">Databáza je prázdna, pridajte nové zviera.</string>
     <string name="dialog_title">Upozornenie!!!</string>
 
-    <string name="desc_pb_odc">Posledne odcervenie</string>
-    <string name="desc_pb_ock">Posledne ockovanie</string>
+    <string name="desc_pb_odc">Posledné odčervenie</string>
+    <string name="desc_pb_ock">Posledné očkovanie</string>
 
-    <string name="next_odc">Dalsie odcervenie</string>
-    <string name="next_ock">Dalsie ockovanie</string>
+    <string name="next_odc">Ďalšie odčervenie</string>
+    <string name="next_ock">Ďalšie očkovanie</string>
 
     <string name="dummy_date">21.12.2012</string>
 
     <string name="age">Vek</string>
-    <string name="pet_age">Zvieraci vek</string>
+    <string name="pet_age">Zvierací vek</string>
     <string name="dummy_age">4</string>
-    <string name="countdown">Odpocet</string>
+    <string name="countdown">Odpočet</string>
 
-    <string name="day">den</string>
-    <string name="days">dni</string>
+    <string name="day">deň</string>
+    <string name="days">dní</string>
 
-    <string name="choose_pet">Vyber druh zvierata.</string>
+    <string name="choose_pet">Vyber druh zvieraťa.</string>
 
     <string-array name="pet_types">
-        <item>Macka</item>
+        <item>Mačka</item>
         <item>Pes</item>
         <item>Zajac</item>
     </string-array>
@@ -83,24 +83,24 @@
     </string-array>
 
     <string-array name="odc_loop">
-        <item>1</item>
-        <item>3</item>
-        <item>6</item>
+        <item>1 mesiac</item>
+        <item>3 mesiace</item>
+        <item>6 mesiacov</item>
     </string-array>
 
     <string-array name="vac_loop">
-        <item>6</item>
-        <item>12</item>
-        <item>24</item>
+        <item>6 mesiacov</item>
+        <item>12 mesiacov</item>
+        <item>24 mesiacov</item>
     </string-array>
 
     <string name="db_empty_one">CHYBA!</string>
-    <string name="db_empty_two">Databaza zvierat je prazdna!</string>
+    <string name="db_empty_two">Databáza zvierat je prázdna!</string>
     <string name="error">Error</string>
-    <string name="zadaj_datum">Zadaj datum</string>
+    <string name="zadaj_datum">Zadaj dátum</string>
     <string name="empty">///</string>
-    <string name="odcervenie">Odcervenie</string>
-    <string name="vakcinacia">Vakcinacia</string>
+    <string name="odcervenie">Odčervenie</string>
+    <string name="vakcinacia">Vakcinácia</string>
     <string name="notif_name">Upozornenia</string>
 
     <string name="attention_cat">Ochorenia, proti ktorým je možné vakcinovať mačky</string>
